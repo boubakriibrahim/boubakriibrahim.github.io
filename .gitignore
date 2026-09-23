@@ -1,9 +1,4 @@
-.DS_Store
-.idea/
-.vscode/
-*.log
-__pycache__/
-.playwright/
-screenshots/
 dist/
-.venv/
+.DS_Store
+*.log
+node_modules/

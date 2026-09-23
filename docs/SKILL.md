@@ -1,0 +1,1485 @@
+# Modern Portfolio Website — Agent Skill
+
+## Purpose
+
+Use this skill whenever an agent is asked to design, generate, rebuild, review, or improve a personal portfolio website for a software engineer, AI engineer, researcher, designer, technical founder, or similar professional.
+
+The goal is to produce a portfolio that feels **designed by a strong human product designer and senior frontend engineer**, not like a generic AI-generated landing page.
+
+The final result should be:
+- modern but restrained;
+- memorable without being gimmicky;
+- highly readable;
+- fast;
+- responsive;
+- accessible;
+- technically credible;
+- visually coherent;
+- easy to maintain;
+- suitable for recruiters, hiring managers, clients, collaborators, and technical peers.
+
+Do not optimize for visual novelty alone. Optimize for **clarity, trust, personality, evidence of work, and conversion**.
+
+---
+
+# 1. Core Design Philosophy
+
+Treat the portfolio as a professional product, not a decorative résumé.
+
+Every page and section must answer one of these questions:
+
+1. Who is this person?
+2. What do they actually build?
+3. What are they unusually good at?
+4. What proof exists?
+5. What technologies do they use?
+6. What problems have they solved?
+7. How can someone contact or hire them?
+
+Prefer simplicity over spectacle.
+
+Use strong typography, disciplined spacing, excellent information hierarchy, and a few deliberate visual moments instead of filling the page with effects.
+
+The design should feel intentional even if all animation is disabled.
+
+---
+
+# 2. Anti-AI-Slop Rules
+
+These rules are mandatory.
+
+## Never generate the usual AI portfolio clichés
+
+Avoid:
+- giant glowing purple/blue gradients everywhere;
+- neon blobs;
+- excessive glassmorphism;
+- floating orb backgrounds;
+- grids with meaningless animated dots;
+- random particles;
+- generic "futuristic" sci-fi styling;
+- 3D planets;
+- fake dashboards used only as decoration;
+- endless rounded cards;
+- every section inside a bordered container;
+- excessive pill badges;
+- gradients on every heading;
+- generic stock illustrations;
+- fake testimonials;
+- fake metrics;
+- fake client logos;
+- fake GitHub stats;
+- fake company work;
+- meaningless "99% performance" claims;
+- typewriter effects;
+- cursor-following blobs;
+- glowing mouse trails;
+- rotating words just because they can rotate;
+- constant scroll-triggered animation;
+- huge "Hi, I'm John 👋" hero templates;
+- vague copy like "Crafting digital experiences";
+- vague copy like "Building the future with AI";
+- vague copy like "Turning ideas into reality";
+- buzzword walls with no evidence.
+
+Do not make every element rounded. Do not make every component a card.
+
+Do not use gradients unless there is a specific visual reason.
+
+Do not use an animation if a well-designed static state already communicates the idea.
+
+---
+
+# 3. Visual Direction
+
+Aim for a visual identity somewhere between:
+- premium editorial site;
+- contemporary developer portfolio;
+- restrained product design;
+- high-quality technical documentation;
+- polished startup website.
+
+The page should feel mature enough for serious engineering or research work.
+
+## Visual characteristics
+
+Prefer:
+- neutral backgrounds;
+- strong black/white or near-black/near-white contrast;
+- one restrained accent color;
+- large but controlled typography;
+- generous whitespace;
+- tight content rhythm;
+- subtle borders;
+- low-contrast separators;
+- crisp icons;
+- editorial project imagery;
+- high-quality screenshots;
+- clear responsive behavior.
+
+Use visual asymmetry carefully.
+
+Use full-width layouts only when the content justifies it.
+
+Whitespace is not wasted space.
+
+---
+
+# 4. Typography
+
+Typography should carry much of the visual identity.
+
+Use at most:
+- one primary sans-serif family; or
+- one sans-serif + one serif/display family if the contrast is intentional.
+
+Good categories:
+- modern grotesk;
+- neo-grotesk;
+- humanist sans;
+- editorial serif;
+- monospace only for metadata, code, labels, or technical details.
+
+Examples of suitable free/system fonts:
+- Inter
+- Geist
+- Manrope
+- IBM Plex Sans
+- IBM Plex Mono
+- Source Sans 3
+- Instrument Sans
+- Space Grotesk
+- Newsreader
+- Source Serif 4
+- system-ui
+
+Do not import five font families.
+
+## Type hierarchy
+
+Create a deliberate scale for:
+- display title;
+- page title;
+- section heading;
+- project title;
+- body;
+- metadata;
+- small labels.
+
+Headings should not all be bold 800.
+
+Use weight, width, spacing, line-height, and case deliberately.
+
+Avoid overly narrow text columns for technical content.
+
+Recommended readable body width:
+- approximately 60–75 characters per line.
+
+---
+
+# 5. Color System
+
+Define semantic tokens instead of hardcoding random colors.
+
+Example:
+
+```css
+--background
+--surface
+--surface-subtle
+--foreground
+--foreground-muted
+--border
+--accent
+--accent-foreground
+--success
+--warning
+--danger
+```
+
+Support light and dark mode if doing so does not compromise quality.
+
+Dark mode should be designed, not generated by simply inverting colors.
+
+Avoid pure black backgrounds over large areas unless appropriate.
+
+Avoid saturated accent colors for large surfaces.
+
+---
+
+# 6. Layout System
+
+Use a consistent grid.
+
+Recommended desktop content widths:
+- 1120–1280px for standard content;
+- up to ~1440px for image-heavy sections;
+- narrower columns for essays/case-study text.
+
+Use a spacing system such as:
+
+```text
+4
+8
+12
+16
+24
+32
+48
+64
+80
+96
+128
+```
+
+Do not use arbitrary spacing values throughout the codebase.
+
+## Desktop
+
+Prefer:
+- 12-column grid or a simple max-width container;
+- generous horizontal margins;
+- asymmetric compositions where useful.
+
+## Mobile
+
+Do not merely shrink desktop.
+
+Recompose:
+- navigation;
+- project grids;
+- sticky sidebars;
+- long metadata rows;
+- case-study layouts;
+- image compositions.
+
+Test at:
+- 320px;
+- 375px;
+- 390px;
+- 768px;
+- 1024px;
+- 1280px;
+- 1440px+.
+
+---
+
+# 7. Recommended Information Architecture
+
+Do not create pages that have no useful content.
+
+A strong default structure is:
+
+```text
+/
+├── Home
+├── Work / Projects
+│   ├── Project detail
+│   ├── Project detail
+│   └── ...
+├── About
+├── Experience
+├── Writing / Research   # only if relevant
+└── Contact
+```
+
+Optional:
+- Lab / Experiments
+- Open Source
+- Publications
+- Talks
+- Notes
+- Resume
+- Uses
+
+Do not add these merely to make the sitemap larger.
+
+---
+
+# 8. Homepage Structure
+
+A strong homepage should usually contain:
+
+## Header
+Minimal.
+- name / personal mark;
+- Work;
+- About;
+- optional Writing;
+- contact;
+- optional theme toggle.
+
+Avoid a crowded navbar.
+
+## Hero
+The hero must state:
+- name;
+- role or positioning;
+- one precise description of expertise;
+- current focus or differentiator;
+- primary action.
+
+A good hero is specific.
+
+Weak:
+> Building intelligent digital experiences.
+
+Better:
+> AI engineer building production RAG, agentic systems, computer-vision pipelines, and private local-LLM infrastructure.
+
+Do not add ten technology badges under the headline.
+
+## Selected Work
+Show 3–6 strongest projects.
+
+Each project should communicate:
+- title;
+- short problem statement;
+- role;
+- outcome;
+- stack or technical domain;
+- strong visual;
+- link to case study/demo/repository when appropriate.
+
+## Expertise / Capabilities
+Keep this concise.
+
+Organize technologies by capability, not by logo soup.
+
+Example:
+
+```text
+AI Systems
+RAG, agents, tool calling, embeddings, evaluation
+
+ML / Vision
+PyTorch, YOLO, Transformers, OpenCV
+
+Platform
+Python, FastAPI, PostgreSQL, Docker, Kubernetes
+
+Frontend
+TypeScript, React, Next.js
+```
+
+## Experience
+Use a compact timeline or structured list.
+
+## Research / Writing
+Only if relevant.
+
+## Contact
+Make the next action obvious.
+
+---
+
+# 9. Project Cards
+
+Project cards are not generic product cards.
+
+Each should include enough information to decide whether to click.
+
+Good structure:
+
+```text
+Project name
+One-sentence description
+
+Role · Year · Domain
+
+[project image]
+
+Optional:
+Impact / technical highlight
+```
+
+Use varied project layouts if the content warrants it.
+
+Do not display every project with the exact same image ratio and generic card wrapper unless the grid benefits from consistency.
+
+---
+
+# 10. Project Case Studies
+
+Case studies matter more than visual decoration.
+
+Recommended structure:
+
+## Opening
+- title;
+- concise thesis;
+- role;
+- timeline;
+- team;
+- stack;
+- links;
+- hero visual.
+
+## Context
+Explain the real problem.
+
+## Constraints
+Examples:
+- latency;
+- offline operation;
+- privacy;
+- limited GPU memory;
+- noisy sensor data;
+- deployment environment;
+- legacy system integration.
+
+## Architecture
+Show the system clearly.
+
+Prefer diagrams that explain actual information flow.
+
+## Decisions
+Explain important trade-offs.
+
+Examples:
+- why local model instead of cloud;
+- why PostgreSQL + pgvector;
+- why a queue was needed;
+- why a model was rejected;
+- why streaming was used;
+- why an agent should not be autonomous in a specific step.
+
+## Implementation
+Show real screenshots, code excerpts, APIs, diagrams, or workflows.
+
+## Results
+Use honest evidence.
+
+Examples:
+- latency;
+- throughput;
+- accuracy;
+- cost reduction;
+- deployment footprint;
+- user feedback;
+- benchmark;
+- qualitative outcome.
+
+Do not invent metrics.
+
+## Lessons
+Show technical maturity.
+
+---
+
+# 11. Technical Portfolio Content Rules
+
+The site should prove depth.
+
+For engineering projects, surface:
+- architecture;
+- deployment;
+- data flow;
+- APIs;
+- monitoring;
+- testing;
+- evaluation;
+- trade-offs;
+- failure modes;
+- security/privacy considerations;
+- infrastructure;
+- model choices;
+- performance.
+
+Do not reduce serious projects to:
+> React + Python + AI
+
+Explain the engineering.
+
+---
+
+# 12. Skills Section
+
+Avoid a giant icon wall.
+
+Do not list technologies the owner barely knows.
+
+Prefer grouped capabilities.
+
+Recommended categories:
+
+```text
+AI & LLM Systems
+Machine Learning
+Computer Vision
+Backend
+Frontend
+Data
+Cloud / Infrastructure
+Observability
+Developer Tooling
+Research
+```
+
+Add technologies only when supported by actual work.
+
+---
+
+# 13. Experience Section
+
+Experience should prioritize:
+- responsibility;
+- scope;
+- achievements;
+- systems built;
+- technologies used;
+- collaboration;
+- measurable impact where real.
+
+Avoid résumé paragraphs with generic duties.
+
+Prefer concise evidence.
+
+---
+
+# 14. Navigation
+
+Navigation should be nearly invisible in use.
+
+Good options:
+- fixed top header;
+- static header;
+- compact floating header only if it genuinely suits the visual system.
+
+Do not use a huge floating glass pill by default.
+
+For mobile:
+- use a simple menu;
+- ensure keyboard accessibility;
+- avoid complex animated full-screen menus unless justified.
+
+---
+
+# 15. Buttons
+
+Use a restrained button system.
+
+Suggested hierarchy:
+
+```text
+Primary
+Secondary
+Text / Link
+Icon
+```
+
+Do not place two giant buttons in every section.
+
+Buttons should have:
+- clear hover;
+- focus-visible state;
+- pressed state;
+- disabled state if applicable.
+
+Use appropriate cursor and target sizes.
+
+---
+
+# 16. Cards and Surfaces
+
+Before creating a card, ask:
+
+> Does this content actually need a container?
+
+Use cards for:
+- grouped interactive content;
+- repeated comparable objects;
+- visually separated project summaries.
+
+Do not put:
+- every paragraph;
+- every heading;
+- every skill;
+- every statistic;
+inside separate cards.
+
+Flat layouts often look more sophisticated.
+
+---
+
+# 17. Motion Design
+
+Motion should reinforce hierarchy and state.
+
+Good motion:
+- subtle page entrance;
+- image reveal;
+- nav transition;
+- hover feedback;
+- accordion expansion;
+- route transition;
+- tasteful project image motion.
+
+Avoid:
+- motion on everything;
+- bounce effects;
+- dramatic spring overshoot;
+- constant movement;
+- scroll hijacking;
+- mandatory smooth scrolling;
+- cursor tricks;
+- excessive parallax.
+
+Respect:
+
+```css
+@media (prefers-reduced-motion: reduce)
+```
+
+Typical duration:
+- 120–220ms for interactions;
+- 250–500ms for larger transitions.
+
+Animation must never delay access to content.
+
+---
+
+# 18. Interaction Design
+
+Every interaction should have:
+- hover state;
+- keyboard focus state;
+- touch behavior;
+- loading state if asynchronous;
+- error state if applicable.
+
+Links should look clickable.
+
+External links should be identifiable where useful.
+
+Do not rely only on color to indicate state.
+
+---
+
+# 19. Portfolio Imagery
+
+Prefer:
+1. real product screenshots;
+2. real diagrams;
+3. real visualizations;
+4. real project photos;
+5. purposeful generated illustrations only when appropriate.
+
+Project imagery should demonstrate the project, not merely decorate it.
+
+Use consistent image treatment:
+- crop;
+- radius;
+- border;
+- background;
+- caption style.
+
+Avoid stock mockups unless they add useful context.
+
+---
+
+# 20. Architecture Diagrams
+
+Architecture diagrams should be:
+- readable;
+- simple;
+- technically correct;
+- consistent with the website visual system.
+
+Show:
+- actors;
+- services;
+- models;
+- databases;
+- queues;
+- external APIs;
+- direction of data flow;
+- trust/security boundaries if relevant.
+
+Do not produce decorative architecture spaghetti.
+
+For complex systems, create multiple smaller diagrams instead of one unreadable mega-diagram.
+
+---
+
+# 21. Icons
+
+Use one icon library.
+
+Recommended:
+- Lucide;
+- Phosphor;
+- Heroicons.
+
+Do not mix icon styles.
+
+Avoid using icons where text is clearer.
+
+---
+
+# 22. Technical Stack
+
+Default recommendation for a modern portfolio:
+
+```text
+Next.js
+React
+TypeScript
+Tailwind CSS
+MDX for case studies/content
+```
+
+Optional:
+- Framer Motion for a small number of interactions;
+- Motion One;
+- View Transitions API;
+- next/image;
+- next/font;
+- Shiki for code;
+- Contentlayer alternative or a simple filesystem content loader.
+
+Use the simplest architecture that works.
+
+Do not install large dependencies for tiny effects.
+
+If the user already has a stack, preserve it unless there is a concrete reason to migrate.
+
+---
+
+# 23. Component Architecture
+
+Keep the component tree human-readable.
+
+Example:
+
+```text
+components/
+  layout/
+    Header.tsx
+    Footer.tsx
+    Container.tsx
+
+  projects/
+    ProjectCard.tsx
+    ProjectHero.tsx
+    ProjectMeta.tsx
+
+  content/
+    SectionHeading.tsx
+    Prose.tsx
+    CodeBlock.tsx
+
+  ui/
+    Button.tsx
+    IconLink.tsx
+```
+
+Avoid:
+- dozens of unnecessary abstraction layers;
+- `atoms/molecules/organisms` unless the project truly benefits;
+- generic components with 30 props;
+- giant single-file pages;
+- duplicated markup.
+
+Create abstractions only after a pattern appears more than once.
+
+---
+
+# 24. Code Quality
+
+Generate production-quality code.
+
+Requirements:
+- TypeScript strict mode;
+- semantic HTML;
+- accessible labels;
+- responsive layout;
+- reusable tokens;
+- good file naming;
+- consistent imports;
+- no dead code;
+- no placeholder dependencies;
+- no console noise;
+- no huge dependency graph;
+- no hardcoded duplicated data;
+- no inline magic values everywhere.
+
+Prefer simple readable code over "clever" abstractions.
+
+---
+
+# 25. Accessibility
+
+Target WCAG AA at minimum.
+
+Verify:
+- color contrast;
+- keyboard navigation;
+- visible focus;
+- skip link;
+- heading hierarchy;
+- form labels;
+- alt text;
+- reduced motion;
+- logical tab order;
+- sufficient click target size;
+- semantic landmarks.
+
+Do not put important text inside images.
+
+---
+
+# 26. Performance
+
+The portfolio should feel instant.
+
+Targets where practical:
+- Lighthouse performance >= 90;
+- minimal JS;
+- optimized images;
+- no huge hero video unless justified;
+- lazy-load below-the-fold media;
+- prefetch carefully;
+- local or optimized fonts;
+- minimal third-party scripts.
+
+Avoid a 5 MB homepage.
+
+---
+
+# 27. SEO / Metadata
+
+Include:
+- descriptive page titles;
+- page descriptions;
+- canonical URLs;
+- Open Graph metadata;
+- Twitter/X metadata if desired;
+- structured data when useful;
+- sitemap;
+- robots.txt;
+- favicon;
+- social preview image.
+
+Project pages should have individual metadata.
+
+---
+
+# 28. Content Quality
+
+Write like a technically credible person, not a marketing generator.
+
+Prefer:
+- concrete nouns;
+- active verbs;
+- short sentences;
+- precise claims.
+
+Avoid:
+- passionate;
+- innovative;
+- cutting-edge;
+- revolutionary;
+- seamless;
+- world-class;
+- next-generation;
+- leverage;
+- synergy;
+- robust solution;
+- dynamic ecosystem;
+unless the word is genuinely necessary.
+
+Replace claims with evidence.
+
+Weak:
+> Built a robust and scalable AI solution.
+
+Better:
+> Built a FastAPI inference service with queued GPU jobs, streaming responses, and PostgreSQL-backed audit logs.
+
+---
+
+# 29. Personality
+
+A strong portfolio should feel personal without becoming informal.
+
+Ways to add personality:
+- typography;
+- project selection;
+- writing voice;
+- one memorable visual device;
+- personal photography;
+- thoughtful About page;
+- short notes;
+- carefully selected interests.
+
+Do not manufacture personality through random emoji or gimmicks.
+
+---
+
+# 30. About Page
+
+The About page should not be a second résumé.
+
+Useful content:
+- professional background;
+- current focus;
+- how the person thinks about their work;
+- what kinds of problems interest them;
+- location / availability if relevant;
+- selected personal interests;
+- photo if desired.
+
+Keep sensitive/private data out unless intentionally provided.
+
+---
+
+# 31. Contact Experience
+
+Keep contact friction low.
+
+Options:
+- direct email;
+- LinkedIn;
+- GitHub;
+- short contact form;
+- calendar link when appropriate.
+
+If using a form:
+- validate;
+- show sending state;
+- show success state;
+- handle errors;
+- protect against obvious spam;
+- do not ask for unnecessary information.
+
+---
+
+# 32. Footer
+
+Keep it simple.
+
+Possible content:
+- name;
+- current year;
+- email;
+- GitHub;
+- LinkedIn;
+- location;
+- source code link.
+
+No need for a giant multi-column SaaS footer.
+
+---
+
+# 33. GitHub Integration
+
+If GitHub data is displayed:
+- use real data;
+- cache requests;
+- handle GitHub API failure;
+- do not expose secrets;
+- do not overwhelm the site with graphs.
+
+Useful:
+- selected open-source projects;
+- recent relevant repositories;
+- star count if meaningful;
+- contribution context.
+
+Less useful:
+- giant contribution heatmap as a substitute for project explanation.
+
+---
+
+# 34. Resume Integration
+
+Provide:
+- clean résumé download link;
+- optional HTML résumé page.
+
+Do not force a recruiter to download the PDF to understand the candidate.
+
+The website and résumé should tell a consistent story.
+
+---
+
+# 35. Dark Mode
+
+If implemented:
+- design both themes intentionally;
+- test screenshots and diagrams;
+- check syntax highlighting;
+- persist preference;
+- respect system preference initially.
+
+Avoid changing layout between themes.
+
+---
+
+# 36. Responsive Project Media
+
+For screenshots:
+- use aspect-ratio containers;
+- prevent layout shift;
+- use responsive image sizes;
+- allow selected images to expand where useful.
+
+On mobile, do not compress complex architecture diagrams into unreadable thumbnails.
+Provide zoom/open behavior if needed.
+
+---
+
+# 37. Empty States and Missing Content
+
+Never fabricate missing project details.
+
+If information is missing:
+- omit the field;
+- use a neutral placeholder during development;
+- mark it clearly as TODO in source code.
+
+Never publish fake metrics, clients, testimonials, certifications, or employers.
+
+---
+
+# 38. Build Workflow for Agents
+
+When executing this skill, follow this order.
+
+## Phase 1 — Inspect
+
+Before writing code, inspect:
+- existing site;
+- repository structure;
+- README;
+- résumé;
+- project descriptions;
+- screenshots;
+- brand assets;
+- existing fonts/colors;
+- existing routes;
+- existing deployment setup.
+
+Do not redesign blindly if a project already exists.
+
+## Phase 2 — Content Inventory
+
+Build a private structured inventory:
+
+```text
+identity
+role
+bio
+experience
+projects
+research
+publications
+skills
+education
+links
+contact
+assets
+```
+
+Separate:
+- verified information;
+- missing information;
+- content that should not be shown.
+
+## Phase 3 — Positioning
+
+Write one internal sentence:
+
+> This portfolio should make the viewer remember the person as ______.
+
+Use this sentence to decide what belongs on the homepage.
+
+## Phase 4 — Visual System
+
+Define:
+- typography;
+- background;
+- surfaces;
+- accent;
+- borders;
+- radius;
+- spacing;
+- width;
+- animation approach.
+
+Do this before building individual sections.
+
+## Phase 5 — Wireframe
+
+Plan the page structure before styling.
+
+Example:
+
+```text
+Header
+Hero
+Selected work
+Capabilities
+Experience
+Research
+Contact
+Footer
+```
+
+## Phase 6 — Implementation
+
+Build:
+1. tokens;
+2. layout primitives;
+3. header/footer;
+4. home;
+5. project cards;
+6. project detail template;
+7. remaining pages;
+8. animation;
+9. responsive polish.
+
+## Phase 7 — Quality Pass
+
+Review:
+- typography;
+- spacing;
+- repetition;
+- hierarchy;
+- mobile;
+- accessibility;
+- performance;
+- broken links;
+- visual consistency;
+- empty content;
+- real vs fake claims.
+
+## Phase 8 — Slop Audit
+
+Ask:
+
+- Does this look like a generic AI landing page?
+- Are there too many cards?
+- Are there too many pills?
+- Are there pointless gradients?
+- Are there unnecessary glowing effects?
+- Is the copy vague?
+- Is every section centered?
+- Is every block inside a rounded rectangle?
+- Is the page trying too hard to look futuristic?
+- Is there any fake information?
+- Does the design have a clear personality?
+- Can a recruiter understand the candidate in 20 seconds?
+- Can an engineer inspect a project and see real technical depth?
+
+Fix all failures before finalizing.
+
+---
+
+# 39. Design Quality Gate
+
+Do not consider the work complete until these are true:
+
+- [ ] Hero is precise, not generic.
+- [ ] The first viewport establishes role and specialty.
+- [ ] Strongest projects appear early.
+- [ ] No fake content.
+- [ ] No stock AI marketing copy.
+- [ ] No unnecessary gradient blobs.
+- [ ] No excessive card grid.
+- [ ] Typography hierarchy is coherent.
+- [ ] Section spacing is consistent.
+- [ ] Buttons use one coherent system.
+- [ ] Mobile layout is intentionally designed.
+- [ ] Dark mode is polished if present.
+- [ ] All interactive elements have focus states.
+- [ ] Reduced motion is supported.
+- [ ] Project pages explain actual engineering.
+- [ ] Screenshots are optimized.
+- [ ] No horizontal overflow.
+- [ ] No placeholder Lorem Ipsum remains.
+- [ ] No broken links.
+- [ ] Site works without animation.
+- [ ] Site still looks strong in grayscale.
+- [ ] Dependencies are justified.
+- [ ] Lighthouse issues are reviewed.
+- [ ] Content is understandable within 20–30 seconds.
+- [ ] A technical reviewer can find deeper evidence within 1–2 clicks.
+
+---
+
+# 40. Visual Review Heuristics
+
+When reviewing screenshots, inspect these specifically.
+
+## Hero
+- Is the heading too large?
+- Does it wrap awkwardly?
+- Is the whitespace deliberate?
+- Is the CTA actually necessary?
+- Is the identity obvious?
+
+## Project grid
+- Is every card identical?
+- Are images meaningful?
+- Is text readable without hovering?
+- Is the strongest project visually prioritized?
+
+## Typography
+- Are too many type sizes used?
+- Are labels too small?
+- Are headings too heavy?
+- Is line-height comfortable?
+
+## Spacing
+- Are sections floating too far apart?
+- Are cards over-padded?
+- Is mobile spacing compressed appropriately?
+
+## Color
+- Is accent color overused?
+- Is muted text still readable?
+- Does dark mode turn into gray-on-gray?
+
+## Motion
+- Does anything move without reason?
+- Does hover move layout?
+- Does animation reduce usability?
+
+---
+
+# 41. Red Flags That Require Rework
+
+Rework the design if any of these appear:
+
+- six or more equal-width cards above the fold;
+- oversized gradient headline;
+- giant generic headshot with no project evidence;
+- skill logos taking more space than projects;
+- three or more different border-radius styles without reason;
+- excessive glass blur;
+- hero copy that could belong to anyone;
+- mobile layout that is simply stacked desktop;
+- more animation code than content code;
+- inaccurate project claims;
+- important content available only on hover;
+- project pages with no technical detail;
+- icons used instead of understandable labels;
+- repeated "Learn more" buttons everywhere.
+
+---
+
+# 42. Preferred UI Patterns
+
+Use selectively.
+
+Good:
+- editorial project index;
+- split hero;
+- image-led case studies;
+- sticky project metadata;
+- subtle section dividers;
+- typographic lists;
+- timeline with restrained decoration;
+- compact command-style metadata;
+- image gallery;
+- architecture diagram panel;
+- code excerpt;
+- technical table;
+- expandable implementation detail.
+
+Use only when helpful:
+- command palette;
+- keyboard shortcuts;
+- animated background;
+- custom cursor;
+- WebGL;
+- 3D;
+- terminal widget.
+
+Never include these just to look technical.
+
+---
+
+# 43. Copywriting Pattern
+
+For projects, prefer:
+
+```text
+Built [system] for [problem/context].
+It [key technical function].
+The system uses [important architecture].
+Result: [verified result].
+```
+
+Example:
+
+> Built a private document intelligence platform for local enterprise data. It indexes PDFs, spreadsheets, and internal files into a hybrid retrieval pipeline and serves responses through locally hosted LLMs. The deployment uses Docker, PostgreSQL, vector search, and OpenAI-compatible model providers.
+
+This is stronger than:
+
+> An innovative AI-powered platform revolutionizing document intelligence.
+
+---
+
+# 44. Portfolio for AI / Agentic AI Engineers
+
+When the portfolio owner works in AI, emphasize systems instead of model-name collection.
+
+Strong topics:
+- RAG architecture;
+- retrieval evaluation;
+- chunking strategy;
+- reranking;
+- agent orchestration;
+- tool execution;
+- MCP;
+- structured outputs;
+- guardrails;
+- model routing;
+- local inference;
+- quantization;
+- GPU constraints;
+- observability;
+- tracing;
+- prompt/version management;
+- evals;
+- failure handling;
+- latency;
+- cost;
+- privacy;
+- human approval;
+- deployment.
+
+Show where the LLM is **not** used.
+
+A mature portfolio explains boundaries.
+
+---
+
+# 45. Portfolio for Full-Stack Engineers
+
+Show:
+- frontend architecture;
+- backend API;
+- database design;
+- authentication;
+- jobs/queues;
+- tests;
+- CI/CD;
+- deployment;
+- monitoring;
+- performance;
+- security.
+
+Do not let a beautiful frontend hide weak engineering.
+
+---
+
+# 46. Portfolio for Researchers
+
+Show:
+- research questions;
+- methodology;
+- system diagrams;
+- datasets;
+- evaluation;
+- publications;
+- reproducibility;
+- limitations;
+- code/data links when possible.
+
+Keep the visual style modern while preserving academic credibility.
+
+---
+
+# 47. Repository Structure Example
+
+Use only as a reference.
+
+```text
+portfolio/
+├── app/
+│   ├── page.tsx
+│   ├── about/
+│   ├── work/
+│   │   ├── page.tsx
+│   │   └── [slug]/
+│   └── api/
+├── components/
+├── content/
+│   └── projects/
+├── public/
+│   ├── images/
+│   └── icons/
+├── styles/
+├── lib/
+├── types/
+├── README.md
+├── package.json
+└── next.config.ts
+```
+
+Keep it boring in the best sense: predictable and understandable.
+
+---
+
+# 48. README Expectations
+
+The repository README should include:
+- short project description;
+- screenshot;
+- stack;
+- local development;
+- environment variables;
+- content editing instructions;
+- deployment steps;
+- project structure;
+- license if applicable.
+
+Do not write a 400-line README for a small portfolio.
+
+---
+
+# 49. Deployment
+
+Prefer:
+- Vercel;
+- Cloudflare Pages;
+- Netlify;
+- static hosting;
+- Docker/self-hosted deployment when needed.
+
+The build must not depend on secret APIs unless necessary.
+
+Have graceful fallbacks for external integrations.
+
+---
+
+# 50. Final Agent Behavior
+
+When asked to generate the portfolio:
+
+1. Inspect available material.
+2. Preserve factual information.
+3. Infer design direction from the person's actual work.
+4. Use a coherent design system.
+5. Build the simplest architecture that satisfies the requirements.
+6. Prioritize real projects.
+7. Explain technical depth.
+8. Avoid generic AI aesthetics.
+9. Test responsive states.
+10. Perform a final visual and content audit.
+11. Remove anything that looks auto-generated, fake, redundant, or decorative without purpose.
+12. Deliver a finished, runnable result rather than a conceptual mockup when coding access is available.
+
+When forced to choose between:
+- more effects and better typography → choose typography;
+- more cards and better hierarchy → choose hierarchy;
+- more copy and stronger evidence → choose evidence;
+- more dependencies and simpler code → choose simpler code;
+- novelty and usability → choose usability;
+- generic polish and authentic personality → choose authentic personality.
+
+The final portfolio should feel like **one person with real work and good taste**, not a template populated by an AI.

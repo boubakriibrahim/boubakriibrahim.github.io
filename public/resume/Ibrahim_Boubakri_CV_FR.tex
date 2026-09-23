@@ -1,0 +1,586 @@
+%-------------------------
+% CV en LaTeX – Développeur full stack, architecture, DevOps et intégration IA
+% Version finale optimisée pour Overleaf et les systèmes ATS
+%-------------------------
+
+\documentclass[a4paper,10pt]{article}
+
+% Encodage français
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+
+\usepackage{latexsym}
+\usepackage[empty]{fullpage}
+\usepackage{titlesec}
+\usepackage{marvosym}
+\usepackage[usenames,dvipsnames]{color}
+\usepackage{verbatim}
+\usepackage{enumitem}
+\usepackage[hidelinks]{hyperref}
+\usepackage{fancyhdr}
+\IfFileExists{french.ldf}{
+  \usepackage[french]{babel}
+}{
+  \usepackage[english]{babel}
+}
+\usepackage{tabularx}
+\IfFileExists{fontawesome5.sty}{
+  \usepackage{fontawesome5}
+}{
+  \newcommand{\faPhone}{}
+  \newcommand{\faEnvelope}{}
+  \newcommand{\faLinkedin}{}
+  \newcommand{\faGithub}{}
+}
+\usepackage{multicol}
+\usepackage{ragged2e}
+\usepackage{geometry}
+
+\geometry{
+  a4paper,
+  left=15mm,
+  right=15mm,
+  top=11mm,
+  bottom=13mm
+}
+
+\setlength{\multicolsep}{-3.0pt}
+\setlength{\columnsep}{-1pt}
+
+\input{glyphtounicode}
+
+\pagestyle{fancy}
+\fancyhf{}
+\fancyfoot{}
+\renewcommand{\headrulewidth}{0pt}
+\renewcommand{\footrulewidth}{0pt}
+
+\urlstyle{same}
+\raggedbottom
+\raggedright
+\setlength{\tabcolsep}{0in}
+\setlength{\footskip}{10pt}
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{0pt}
+\setlength{\emergencystretch}{1em}
+\linespread{1.0}\selectfont
+
+\titleformat{\section}{\scshape\raggedright\large\bfseries}{}{0em}{}[\color{black}\titlerule]
+\titlespacing*{\section}{0pt}{8pt}{5pt}
+
+\pdfgentounicode=1
+
+%-------------------------
+% Commandes personnalisées
+%-------------------------
+
+\newcommand{\tagline}[1]{\small #1}
+
+\newcommand{\resumeItem}[1]{
+  \item\small{{#1 \vspace{-1pt}}}
+}
+
+\newcommand{\resumeSubheading}[4]{
+  \vspace{0pt}\item
+    \begin{tabular*}{1.0\textwidth}[t]{l@{\extracolsep{\fill}}r}
+      \textbf{#1} & \textbf{\small #2} \\
+      \textit{\small #3} & \textit{\small #4} \\
+    \end{tabular*}\vspace{2.5pt}
+}
+
+\newcommand{\resumeProjectHeading}[2]{
+  \item
+    \begin{tabular*}{1.0\textwidth}{l@{\extracolsep{\fill}}r}
+      \small #1 & \textbf{\small #2} \\
+    \end{tabular*}\vspace{2.5pt}
+}
+
+\newcommand{\resumeSubItem}[2]{
+  \item\small{\textbf{#1}: #2 \vspace{0.3pt}}
+}
+
+\renewcommand\labelitemi{$\vcenter{\hbox{\tiny$\bullet$}}$}
+\renewcommand\labelitemii{$\vcenter{\hbox{\tiny$\bullet$}}$}
+
+\newcommand{\resumeSubHeadingListStart}{
+  \begin{itemize}[
+    leftmargin=0.0in,
+    label={},
+    itemsep=1.5pt,
+    topsep=2pt,
+    parsep=0pt,
+    partopsep=0pt
+  ]
+}
+
+\newcommand{\resumeSubHeadingListEnd}{
+  \end{itemize}
+}
+
+\newcommand{\resumeItemListStart}{
+  \begin{itemize}[
+    leftmargin=0.18in,
+    itemsep=0.8pt,
+    topsep=2pt,
+    parsep=0pt,
+    partopsep=0pt
+  ]
+}
+
+\newcommand{\resumeItemListEnd}{
+  \end{itemize}\vspace{1.5pt}
+}
+
+%-------------------------------------------
+% Début du CV
+%-------------------------------------------
+
+\begin{document}
+
+
+%----------EN-TÊTE----------
+\begin{center}
+    {\Huge \scshape Ibrahim Boubakri} \\ \vspace{1pt}
+    \tagline{Développeur Full Stack \textbar{} DevOps \textbar{} Développement logiciel \textbar{} Intégration IA} \\ \vspace{2pt}
+    \small
+    \raisebox{-0.1\height}\faPhone\ +1 (819) 992-2001 ~
+    \href{mailto:ibrahimboubakri1@gmail.com}{
+    \raisebox{-0.2\height}\faEnvelope\ \underline{ibrahimboubakri1@gmail.com}} ~
+    \href{https://linkedin.com/in/ibrahimboubakri/}{
+    \raisebox{-0.2\height}\faLinkedin\ \underline{ibrahimboubakri}} ~
+    \href{https://github.com/boubakriibrahim}{
+    \raisebox{-0.2\height}\faGithub\ \underline{boubakriibrahim}}
+    \vspace{-8pt}
+\end{center}
+
+%-----------PROFIL-----------
+\section{Profil}
+
+\justify
+\small{
+Développeur full stack orienté conception et livraison de solutions logicielles robustes,
+performantes et maintenables, avec expérience en backend, frontend, APIs, automatisation,
+DevOps et intégration IA. Conçoit des services modulaires, des workflows conteneurisés,
+des pipelines CI/CD et des composants applicatifs enrichis par l'IA/LLM, de la conception
+au déploiement et à l'observabilité. Solide maîtrise de Python, FastAPI, React, Node.js,
+Docker, Kubernetes, SQL et Linux, avec un fort accent sur la fiabilité, l'efficacité,
+la qualité logicielle, l'évolutivité et l'amélioration continue.
+}
+
+\vspace{-3pt}
+
+%-----------FORMATION-----------
+\section{Formation}
+
+\resumeSubHeadingListStart
+
+  \resumeSubheading
+    {Université du Québec à Trois-Rivières -- UQTR}
+    {Sept. 2024 -- Août 2026}
+    {Maîtrise en génie électrique, concentration informatique}
+    {Trois-Rivières, QC, Canada}
+
+  \resumeSubheading
+    {École Nationale des Sciences de l'Informatique -- ENSI}
+    {Sept. 2020 -- Août 2023}
+    {Diplôme d'ingénieur en informatique}
+    {Université de la Manouba, Tunisie}
+
+\resumeSubHeadingListEnd
+
+%-----------EXPÉRIENCE PROFESSIONNELLE-----------
+\section{Expérience professionnelle}
+
+\resumeSubHeadingListStart
+
+  \resumeSubheading
+    {Développeur full stack -- Architecture, DevOps et intégration IA}
+    {Sept. 2024 -- Aujourd'hui}
+    {Modular AI Platform}
+    {Québec, QC, Canada / Télétravail}
+
+    \resumeItemListStart
+
+      \resumeItem{
+      Contribué à la conception et au développement d'une plateforme
+      logicielle modulaire destinée à l'orchestration de traitements,
+      à la gestion de données et à l'intégration de services
+      d'intelligence artificielle.
+      }
+
+      \resumeItem{
+      Conçu des composants backend et des APIs pour gérer les pipelines IA,
+      les fichiers structurés, les métadonnées, les journaux d'exécution
+      et les mécanismes de validation.
+      }
+
+      \resumeItem{
+      Participé aux choix d'architecture afin de découpler les services,
+      améliorer la maintenabilité du code et faciliter l'évolution
+      indépendante des modules.
+      }
+
+      \resumeItem{
+      Intégré des modèles et services d'IA dans des workflows applicatifs
+      reproductibles, avec gestion des entrées, des sorties, des erreurs
+      et du suivi d'exécution.
+      }
+
+      \resumeItem{
+      Mis en place et amélioré des pratiques DevOps fondées sur la
+      conteneurisation, l'intégration continue, l'automatisation des tests
+      et la gestion des déploiements.
+      }
+
+      \resumeItem{
+      Développé des mécanismes de stockage, de suivi d'avancement et de
+      traitement asynchrone pour renforcer la fiabilité et l'observabilité
+      de la plateforme.
+      }
+
+      \resumeItem{
+      Collaboré à l'optimisation des performances, à la résolution
+      d'incidents techniques et à la documentation des composants
+      et interfaces.
+      }
+
+      \resumeItem{
+      Accéléré le développement et la résolution d'incidents à l'aide
+      d'assistants de programmation agentiques (Claude Code, OpenAI Codex,
+      GitHub Copilot et Cursor) pour l'analyse de code, le refactoring,
+      la génération de tests et la documentation, avec revue humaine
+      et validation CI/CD.
+      }
+
+      \resumeItem{
+      \textit{Technologies :}
+      Python, FastAPI, REST, Docker, GitLab CI/CD,
+      SQL, PyTorch, OpenCV, Linux
+      }
+
+    \resumeItemListEnd
+
+    \vspace{7pt}
+
+
+
+  \resumeSubheading
+    {Chercheur -- Vision par ordinateur et robotique autonome}
+    {2024 -- 2026}
+    {UQTR \textbar{} Collaboration industrielle avec Noovelia}
+    {Trois-Rivières, QC, Canada}
+
+    \resumeItemListStart
+
+      \resumeItem{
+      Conçu et développé une chaîne de perception par vision de bout en bout
+      pour la détection de palettes industrielles et l'estimation géométrique,
+      avec un objectif de robustesse, d'efficacité et d'inférence temps réel.
+      }
+
+      \resumeItem{
+      Développé un pipeline automatisé de données synthétiques sous Blender
+      avec randomisation de domaine et annotations automatiques afin d'accélérer
+      l'expérimentation et d'améliorer la généralisation vers des scènes réelles.
+      }
+
+      \resumeItem{
+      Entraîné, ajusté et comparé des modèles YOLO-Pose avec PyTorch,
+      Ultralytics et CUDA sur infrastructure GPU NVIDIA; structuré des protocoles
+      reproductibles pour évaluer robustesse, généralisation et compromis performance/latence.
+      }
+
+      \resumeItem{
+      Développé une plateforme intégrée reliant génération de données,
+      entraînement, inférence, simulation PyBullet, services FastAPI/WebSocket
+      et interface React afin d'unifier les workflows et réduire les opérations manuelles.
+      }
+
+      \resumeItem{
+      Intégré le module de perception avec ROS 2 et une chaîne de navigation
+      existante, déployé la solution sur NVIDIA Jetson, validé son fonctionnement
+      en temps réel et préparé un pipeline réutilisable pour le partenaire industriel.
+      }
+
+      \resumeItem{
+      \textit{Technologies :}
+      Python, PyTorch, Ultralytics, CUDA, Blender, PyBullet, ROS 2,
+      FastAPI, WebSocket, React, NVIDIA Jetson
+      }
+
+    \resumeItemListEnd
+
+    \vspace{7pt}
+
+  \resumeSubheading
+    {Développeur full stack -- DevOps et automatisation}
+    {Nov. 2023 -- Août 2024}
+    {PRIMATEC Engineering}
+    {Sfax, Tunisie}
+
+    \resumeItemListStart
+
+      \resumeItem{
+      Développé des outils logiciels et des scripts d'automatisation
+      pour réduire les opérations manuelles dans les processus de
+      validation, de test et de contrôle qualité.
+      }
+
+      \resumeItem{
+      Intégré des tests automatisés dans des pipelines CI/CD afin
+      d'améliorer la fiabilité, la reproductibilité et la rapidité
+      des livraisons logicielles.
+      }
+
+      \resumeItem{
+      Conçu des composants Python modulaires avec gestion des erreurs,
+      journalisation, traçabilité et séparation claire des responsabilités.
+      }
+
+      \resumeItem{
+      Maintenu et amélioré des environnements d'intégration continue
+      reposant sur Docker, Jenkins, GitLab et des scripts d'automatisation.
+      }
+
+      \resumeItem{
+      Implémenté des mécanismes de collecte et d'exploitation de journaux
+      techniques afin de faciliter le diagnostic des erreurs et le suivi
+      des exécutions.
+      }
+
+      \resumeItem{
+      Collaboré avec les équipes de développement et de validation
+      pour standardiser les procédures techniques et sécuriser les
+      étapes de livraison.
+      }
+
+      \resumeItem{
+      Rédigé la documentation d'installation, d'utilisation et de
+      maintenance des outils développés.
+      }
+
+      \resumeItem{
+      \textit{Technologies :}
+      Python, Docker, Jenkins, GitLab CI/CD, Jira, Batch,
+      PowerShell, tests automatisés, Linux
+      }
+
+    \resumeItemListEnd
+
+    \vspace{7pt}
+
+  \resumeSubheading
+    {Développeur full stack stagiaire -- Applications web et données}
+    {Mars 2023 -- Août 2023}
+    {Institut de Recherche sur l'Hydrogène}
+    {Trois-Rivières, QC, Canada}
+
+    \resumeItemListStart
+
+      \resumeItem{
+      Conçu et déployé une plateforme web reposant sur une architecture
+      microservices pour la collecte, le traitement et la visualisation
+      de données techniques en temps réel.
+      }
+
+      \resumeItem{
+      Développé des services frontend et backend ainsi que des interfaces
+      d'échange entre les composants de la plateforme.
+      }
+
+      \resumeItem{
+      Implémenté des pipelines ETL automatisés pour collecter,
+      transformer et stocker des flux de données transmis via MQTT.
+      }
+
+      \resumeItem{
+      Conteneurisé les différents services afin d'améliorer la portabilité,
+      l'isolation et la reproductibilité des environnements.
+      }
+
+      \resumeItem{
+      Participé à l'intégration de pratiques CI/CD pour automatiser
+      les phases de construction, de test et de déploiement.
+      }
+
+      \resumeItem{
+      Contribué à la modélisation des données, à la gestion des bases
+      de données et à la documentation de l'architecture technique.
+      }
+
+      \resumeItem{
+      \textit{Technologies :}
+      React, Node.js, MongoDB, Python, MQTT, Docker,
+      Kubernetes, Jenkins
+      }
+
+    \resumeItemListEnd
+
+\resumeSubHeadingListEnd
+
+\vspace{6pt}
+
+%-----------PROJETS-----------
+\section{Projets sélectionnés}
+
+\resumeSubHeadingListStart
+
+  \resumeProjectHeading
+    {\textbf{Plateforme modulaire IA et automatisation}}
+    {Avr. 2026 -- Aujourd'hui}
+
+    \resumeItemListStart
+
+      \resumeItem{
+      Conçu une architecture modulaire combinant services backend,
+      APIs, automatisation et composants d'intelligence artificielle.
+      }
+
+      \resumeItem{
+      Développé des workflows capables d'orchestrer plusieurs étapes
+      de traitement, de validation et de génération de résultats.
+      }
+
+      \resumeItem{
+      Implémenté des mécanismes de suivi des exécutions, de gestion
+      des métadonnées, de versionnement des paramètres et de
+      centralisation des sorties.
+      }
+
+      \resumeItem{
+      Intégré des modèles d'IA générative dans des processus logiciels
+      reproductibles avec validation des réponses et gestion des erreurs.
+      }
+
+      \resumeItem{
+      Conteneurisé les services et automatisé les étapes de test
+      et de déploiement afin de faciliter l'exploitation de la plateforme.
+      }
+
+      \resumeItem{
+      \textit{Technologies :}
+      Python, FastAPI, Docker, APIs REST, SQL,
+      GitLab CI/CD, IA générative, LLM, RAG, MCP, tool/function calling
+      }
+
+    \resumeItemListEnd
+
+    \vspace{7pt}
+
+  \resumeProjectHeading
+    {\textbf{HackZone Tunisia X}
+    \textbar{} \emph{Infrastructure et cybersécurité}}
+    {Avr. 2022}
+
+    \resumeItemListStart
+
+      \resumeItem{
+      Participé à l'organisation d'un événement CTF de 24 heures
+      réunissant plus de 100 équipes et 300 participants.
+      }
+
+      \resumeItem{
+      Contribué à la conception et au déploiement de l'infrastructure
+      technique utilisée pour héberger les défis et les services
+      de la compétition.
+      }
+
+      \resumeItem{
+      Préparé des défis portant sur les vulnérabilités web,
+      les systèmes Linux et la rétro-ingénierie.
+      }
+
+      \resumeItem{
+      Assuré le support technique, le suivi des services et la
+      résolution d'incidents pendant l'événement.
+      }
+
+      \resumeItem{
+      \textit{Technologies :}
+      Azure, Python, Kali Linux, Git, Docker, cybersécurité web
+      }
+
+    \resumeItemListEnd
+
+\resumeSubHeadingListEnd
+
+\vspace{3pt}
+
+%-----------COMPÉTENCES-----------
+\section{Compétences techniques}
+
+\resumeSubHeadingListStart
+
+  \resumeSubItem{Développement full stack et backend}{
+  Python, JavaScript, React, Node.js, FastAPI, Flask, APIs REST,
+  WebSocket, services asynchrones, authentification, intégration de services
+  et conception de composants réutilisables
+  }
+
+  \resumeSubItem{Architecture logicielle}{
+  architectures modulaires, microservices, conception d'APIs,
+  séparation des responsabilités, intégration de services,
+  évolutivité, maintenabilité et optimisation des performances
+  }
+
+  \resumeSubItem{DevOps et livraison logicielle}{
+  Git, GitLab CI/CD, Jenkins, Docker, Kubernetes, Linux,
+  conteneurisation, tests automatisés, pipelines de déploiement,
+  observabilité, journalisation et diagnostic d'incidents
+  }
+
+  \resumeSubItem{Intégration IA et LLM}{
+  IA générative, intégration de LLM locaux et externes, RAG,
+  MCP, tool/function calling, workflows agentiques, validation de réponses,
+  PyTorch, OpenCV et automatisation assistée par IA
+  }
+
+  \resumeSubItem{Vision par ordinateur et robotique}{
+  Ultralytics, YOLO-Pose, CUDA, ROS 2, NVIDIA Jetson,
+  Blender, PyBullet, perception robotique, inférence temps réel
+  et données synthétiques
+  }
+
+  \resumeSubItem{Données et pipelines}{
+  SQL, MongoDB, MySQL, ETL, MQTT, JSON, CSV,
+  validation de données, métadonnées, fichiers structurés
+  et analyse de logs
+  }
+
+  \resumeSubItem{Programmation}{
+  Python, SQL, JavaScript, Java, PHP, C++, C\#,
+  PowerShell et Bash
+  }
+
+  \resumeSubItem{Outils de développement assisté par IA}{
+  Claude Code, OpenAI Codex, GitHub Copilot, Cursor,
+  analyse de code, refactoring, génération de tests,
+  documentation et validation avec revue humaine
+  }
+
+  \resumeSubItem{Langues}{
+  français, anglais, arabe
+  }
+
+\resumeSubHeadingListEnd
+
+\vspace{-2pt}
+
+%-----------CERTIFICATIONS ET ACTIVITÉS-----------
+\section{Certifications et activités}
+
+\resumeItemListStart
+
+  \resumeItem{
+  \textbf{Certifications :} DevOps Bootcamp -- TechWorld with Nana
+  \textbar{} AWS Cloud Technical Essentials -- Coursera
+  }
+
+  \resumeItem{
+  Membre de l'équipe d'organisation de ENSI Annual Forum,
+  TuniHack, RoboCup et HackZone Tunisia.
+  }
+
+\resumeItemListEnd
+
+\end{document}

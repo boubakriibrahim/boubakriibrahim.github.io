@@ -1,0 +1,341 @@
+% !TeX program = pdflatex
+%-------------------------
+% English Resume - Full-Stack Development, DevOps and AI Integration
+% Overleaf-stable layout aligned with the French version
+% Required compiler: pdfLaTeX
+%-------------------------
+
+\documentclass[a4paper,10pt]{article}
+
+% Prevent XeLaTeX/LuaLaTeX from silently changing font metrics and spacing.
+\usepackage{iftex}
+\ifPDFTeX
+\else
+  \PackageError{resume}{This project must be compiled with pdfLaTeX}{Select pdfLaTeX in Overleaf under Menu -> Compiler.}
+\fi
+
+% Encoding and language
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+
+\usepackage{latexsym}
+\usepackage[empty]{fullpage}
+\usepackage{titlesec}
+\usepackage{marvosym}
+\usepackage[usenames,dvipsnames]{color}
+\usepackage{verbatim}
+\usepackage{enumitem}
+\usepackage[hidelinks]{hyperref}
+\usepackage{fancyhdr}
+\usepackage[english]{babel}
+\usepackage{tabularx}
+\IfFileExists{fontawesome5.sty}{
+  \usepackage{fontawesome5}
+}{
+  \newcommand{\faPhone}{}
+  \newcommand{\faEnvelope}{}
+  \newcommand{\faLinkedin}{}
+  \newcommand{\faGithub}{}
+}
+\usepackage{multicol}
+\usepackage{ragged2e}
+\usepackage{geometry}
+
+\geometry{
+  a4paper,
+  left=15mm,
+  right=15mm,
+  top=11mm,
+  bottom=13mm
+}
+
+\setlength{\multicolsep}{-3.0pt}
+\setlength{\columnsep}{-1pt}
+
+\input{glyphtounicode}
+
+\pagestyle{fancy}
+\fancyhf{}
+\fancyfoot{}
+\renewcommand{\headrulewidth}{0pt}
+\renewcommand{\footrulewidth}{0pt}
+
+\urlstyle{same}
+\raggedbottom
+\raggedright
+\setlength{\tabcolsep}{0in}
+\setlength{\footskip}{10pt}
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{0pt}
+\linespread{1.0}\selectfont
+
+\titleformat{\section}{\scshape\raggedright\large\bfseries}{}{0em}{}[\color{black}\titlerule]
+\titlespacing*{\section}{0pt}{8pt}{5pt}
+
+\pdfgentounicode=1
+
+%-------------------------
+% Custom commands
+%-------------------------
+
+\newcommand{\tagline}[1]{\small #1}
+
+\newcommand{\resumeItem}[1]{
+  \item\small{{#1 \vspace{-1pt}}}
+}
+
+\newcommand{\resumeSubheading}[4]{
+  \vspace{0pt}\item
+    \begin{tabular*}{1.0\textwidth}[t]{l@{\extracolsep{\fill}}r}
+      \textbf{#1} & \textbf{\small #2} \\
+      \textit{\small #3} & \textit{\small #4} \\
+    \end{tabular*}\vspace{2.5pt}
+}
+
+\newcommand{\resumeProjectHeading}[2]{
+  \item
+    \begin{tabular*}{1.0\textwidth}{l@{\extracolsep{\fill}}r}
+      \small #1 & \textbf{\small #2} \\
+    \end{tabular*}\vspace{2.5pt}
+}
+
+\newcommand{\resumeSubItem}[2]{
+  \item\small{\textbf{#1}: #2 \vspace{0.3pt}}
+}
+
+% Use the same dash-style bullets seen in the French version.
+\renewcommand\labelitemi{\textemdash}
+\renewcommand\labelitemii{\textemdash}
+
+\newcommand{\resumeSubHeadingListStart}{
+  \begin{itemize}[
+    leftmargin=0.0in,
+    label={},
+    itemsep=1.5pt,
+    topsep=2pt,
+    parsep=0pt,
+    partopsep=0pt
+  ]
+}
+
+\newcommand{\resumeSubHeadingListEnd}{
+  \end{itemize}
+}
+
+\newcommand{\resumeItemListStart}{
+  \begin{itemize}[
+    leftmargin=0.18in,
+    itemsep=0.8pt,
+    topsep=2pt,
+    parsep=0pt,
+    partopsep=0pt
+  ]
+}
+
+\newcommand{\resumeItemListEnd}{
+  \end{itemize}\vspace{1.5pt}
+}
+
+%-------------------------------------------
+% Resume
+%-------------------------------------------
+
+\begin{document}
+
+%----------HEADER----------
+\begin{center}
+    {\Huge \scshape Ibrahim Boubakri} \\ \vspace{1pt}
+    \tagline{Full-Stack Developer \textbar{} DevOps \textbar{} Software Development \textbar{} AI Integration} \\ \vspace{2pt}
+    \small
+    \raisebox{-0.1\height}\faPhone\ +1 (819) 992-2001 ~
+    \href{mailto:ibrahimboubakri1@gmail.com}{
+    \raisebox{-0.2\height}\faEnvelope\ \underline{ibrahimboubakri1@gmail.com}} ~
+    \href{https://linkedin.com/in/ibrahimboubakri/}{
+    \raisebox{-0.2\height}\faLinkedin\ \underline{ibrahimboubakri}} ~
+    \href{https://github.com/boubakriibrahim}{
+    \raisebox{-0.2\height}\faGithub\ \underline{boubakriibrahim}}
+    \vspace{-8pt}
+\end{center}
+
+%-----------PROFILE-----------
+\section{Profile}
+\justify
+\small{
+Full-stack developer focused on building reliable, high-performance, and maintainable software, with hands-on experience across backend, frontend, APIs, automation, DevOps, and AI integration. Builds modular services, containerized workflows, CI/CD pipelines, and AI/LLM-enabled application components from technical design through deployment and observability. Strong in Python, FastAPI, React, Node.js, Docker, Kubernetes, SQL, and Linux, with a consistent focus on performance, reliability, developer efficiency, scalability, and continuous improvement.
+}
+\vspace{-3pt}
+
+%-----------EDUCATION-----------
+\section{Education}
+\resumeSubHeadingListStart
+
+  \resumeSubheading
+    {Universit\'e du Qu\'ebec \`a Trois-Rivi\`eres -- UQTR}{Sep. 2024 -- Aug. 2026}
+    {Master's in Electrical Engineering, Computer Engineering Concentration}{Trois-Rivi\`eres, QC, Canada}
+
+  \resumeSubheading
+    {National School of Computer Science -- ENSI}{Sep. 2020 -- Aug. 2023}
+    {Engineering Degree in Computer Science}{University of Manouba, Tunisia}
+
+\resumeSubHeadingListEnd
+
+%-----------PROFESSIONAL EXPERIENCE-----------
+\section{Professional Experience}
+\resumeSubHeadingListStart
+
+  \resumeSubheading
+    {Full-Stack Developer -- Architecture, DevOps and AI Integration}{Sep. 2024 -- Present}
+    {Modular AI Platform}{Quebec City, QC, Canada / Remote}
+    \resumeItemListStart
+      \resumeItem{Contributed to the design and development of a modular software platform for workflow orchestration, data management, and AI service integration.}
+      \resumeItem{Designed backend components and REST APIs for AI pipelines, structured files, metadata, execution logs, and validation mechanisms.}
+      \resumeItem{Supported architectural decisions that decoupled services, improved code maintainability, and enabled modules to evolve independently.}
+      \resumeItem{Integrated AI models and services into reproducible application workflows with input, output, error, and execution-status management.}
+      \resumeItem{Implemented and improved DevOps practices using containerization, continuous integration, automated testing, and deployment workflows.}
+      \resumeItem{Developed storage, progress-tracking, and asynchronous-processing capabilities to improve platform reliability and observability.}
+      \resumeItem{Contributed to performance optimization, technical incident resolution, and documentation of software components and interfaces.}
+      \resumeItem{Accelerated development and incident resolution with agentic coding assistants (Claude Code, OpenAI Codex, GitHub Copilot, and Cursor) for code analysis, refactoring, test generation, and documentation, with human review and CI/CD validation.}
+      \resumeItem{\textit{Technologies:} Python, FastAPI, REST APIs, Docker, Git, GitLab CI/CD, SQL, JSON, CSV, PyTorch, OpenCV, Linux}
+    \resumeItemListEnd
+    \vspace{7pt}
+
+
+
+  \resumeSubheading
+    {Researcher -- Computer Vision and Autonomous Robotics}{2024 -- 2026}
+    {UQTR \textbar{} Industry Collaboration with Noovelia}{Trois-Rivières, QC, Canada}
+    \resumeItemListStart
+      \resumeItem{Designed and developed an end-to-end computer-vision perception pipeline for industrial pallet detection and geometric keypoint estimation, with emphasis on robust and efficient real-time inference.}
+      \resumeItem{Built an automated Blender-based synthetic-data workflow with domain randomization and automatic annotations to accelerate experimentation and improve generalization to real deployment environments.}
+      \resumeItem{Trained, fine-tuned, and benchmarked YOLO-Pose models using PyTorch, Ultralytics, CUDA, and NVIDIA GPU infrastructure; structured reproducible evaluations for robustness, generalization, and performance/latency trade-offs.}
+      \resumeItem{Developed an integrated AI and robotics platform connecting synthetic-data generation, model training, inference, PyBullet simulation, FastAPI/WebSocket services, and React to unify workflows and reduce manual operations.}
+      \resumeItem{Integrated the perception module with ROS 2 and an existing navigation pipeline, deployed the solution on NVIDIA Jetson, validated real-time operation, and prepared a reusable integration pipeline for the industrial partner.}
+      \resumeItem{\textit{Technologies:} Python, PyTorch, Ultralytics, CUDA, Blender, PyBullet, ROS 2, FastAPI, WebSocket, React, NVIDIA Jetson}
+    \resumeItemListEnd
+    \vspace{7pt}
+
+  \resumeSubheading
+    {Developer -- DevOps and Automation}{Nov. 2023 -- Aug. 2024}
+    {PRIMATEC Engineering}{Sfax, Tunisia}
+    \resumeItemListStart
+      \resumeItem{Developed software tools and automation scripts that reduced manual work across validation, testing, and quality-control processes.}
+      \resumeItem{Integrated automated tests into CI/CD pipelines to improve the reliability, reproducibility, and speed of software deliveries.}
+      \resumeItem{Designed modular Python components with structured error handling, logging, traceability, and clear separation of responsibilities.}
+      \resumeItem{Maintained and improved continuous-integration environments using Docker, Jenkins, GitLab, and automation scripts.}
+      \resumeItem{Implemented technical-log collection and processing mechanisms to support troubleshooting and execution monitoring.}
+      \resumeItem{Collaborated with development and validation teams to standardize technical procedures and strengthen delivery workflows.}
+      \resumeItem{Produced installation, usage, and maintenance documentation for internally developed tools.}
+      \resumeItem{\textit{Technologies:} Python, Docker, Jenkins, GitLab CI/CD, Jira, Batch, PowerShell, automated testing, Linux}
+    \resumeItemListEnd
+    \vspace{7pt}
+
+  \resumeSubheading
+    {Full-Stack Developer Intern -- Web Applications and Data}{Mar. 2023 -- Aug. 2023}
+    {Hydrogen Research Institute}{Trois-Rivi\`eres, QC, Canada}
+    \resumeItemListStart
+      \resumeItem{Designed and deployed a microservices-based web platform for collecting, processing, and visualizing real-time technical data.}
+      \resumeItem{Developed frontend and backend services and implemented interfaces for communication between platform components.}
+      \resumeItem{Built automated ETL pipelines to collect, transform, and store data streams transmitted through MQTT.}
+      \resumeItem{Containerized services to improve portability, isolation, and environment reproducibility.}
+      \resumeItem{Supported the adoption of CI/CD practices for automated build, testing, and deployment stages.}
+      \resumeItem{Contributed to data modeling, database management, and technical architecture documentation.}
+      \resumeItem{\textit{Technologies:} React, Node.js, MongoDB, Python, MQTT, Docker, Kubernetes, Jenkins}
+    \resumeItemListEnd
+
+\resumeSubHeadingListEnd
+\vspace{7pt}
+
+%-----------SELECTED PROJECTS-----------
+\section{Selected Projects}
+\resumeSubHeadingListStart
+
+  \resumeProjectHeading
+    {\textbf{Modular AI Integration and Automation Platform}}{Apr. 2026 -- Present}
+    \resumeItemListStart
+      \resumeItem{Designed a modular architecture combining backend services, REST APIs, automation, and AI components.}
+      \resumeItem{Developed workflows that orchestrate multiple processing, validation, and result-generation stages.}
+      \resumeItem{Implemented execution tracking, metadata management, parameter versioning, and centralized output management.}
+      \resumeItem{Integrated generative AI models into reproducible software processes with response validation and error handling.}
+      \resumeItem{Containerized services and automated testing and deployment stages to simplify platform operation.}
+      \resumeItem{\textit{Technologies:} Python, FastAPI, Docker, REST APIs, SQL, GitLab CI/CD, generative AI, LLM integration, RAG, MCP, tool/function calling}
+    \resumeItemListEnd
+    \vspace{7pt}
+
+  \resumeProjectHeading
+    {\textbf{HackZone Tunisia X} \textbar{} \emph{Infrastructure and Cybersecurity}}{Apr. 2022}
+    \resumeItemListStart
+      \resumeItem{Helped organize a 24-hour capture-the-flag event involving more than 100 teams and 300 participants.}
+      \resumeItem{Contributed to the design and deployment of the technical infrastructure used to host competition challenges and services.}
+      \resumeItem{Prepared technical challenges covering web vulnerabilities, Linux systems, and reverse engineering.}
+      \resumeItem{Provided technical support, service monitoring, and incident resolution throughout the event.}
+      \resumeItem{\textit{Technologies:} Azure, Python, Kali Linux, Git, Docker, web cybersecurity}
+    \resumeItemListEnd
+
+\resumeSubHeadingListEnd
+\vspace{5pt}
+
+%-----------TECHNICAL SKILLS-----------
+\section{Technical Skills}
+\resumeSubHeadingListStart
+
+  \resumeSubItem{Full-Stack and Backend Development}{
+  Python, JavaScript, React, Node.js, FastAPI, Flask, REST APIs,
+  WebSocket, asynchronous services, authentication, systems integration,
+  reusable component design
+  }
+
+  \resumeSubItem{Software Architecture}{
+  modular architectures, microservices, API design, separation of concerns,
+  service integration, scalability, maintainability, performance optimization
+  }
+
+  \resumeSubItem{DevOps and Software Delivery}{
+  Git, GitLab CI/CD, Jenkins, Docker, Kubernetes, Linux,
+  containerization, automated testing, deployment pipelines,
+  observability, logging, incident diagnostics
+  }
+
+  \resumeSubItem{AI and LLM Integration}{
+  generative AI, local and external LLM integration, RAG,
+  MCP, tool/function calling, agentic workflows, response validation,
+  PyTorch, OpenCV, AI-assisted automation
+  }
+
+  \resumeSubItem{Computer Vision and Robotics}{
+  Ultralytics, YOLO-Pose, CUDA, ROS 2, NVIDIA Jetson,
+  Blender, PyBullet, robotic perception, real-time inference,
+  synthetic data workflows
+  }
+
+  \resumeSubItem{Data and Pipelines}{
+  SQL, MongoDB, MySQL, ETL, MQTT, JSON, CSV,
+  data validation, metadata, structured-file processing, log analysis
+  }
+
+  \resumeSubItem{Programming Languages}{
+  Python, SQL, JavaScript, Java, PHP, C++, C\#, PowerShell, Bash
+  }
+
+  \resumeSubItem{AI-Assisted Development Tools}{
+  Claude Code, OpenAI Codex, GitHub Copilot, Cursor,
+  code analysis, refactoring, test generation, documentation,
+  human-reviewed validation
+  }
+
+  \resumeSubItem{Languages}{
+  French fluent, English professional working proficiency, Arabic native
+  }
+
+\resumeSubHeadingListEnd
+\vspace{-2pt}
+
+%-----------CERTIFICATIONS AND ACTIVITIES-----------
+\section{Certifications and Activities}
+\resumeItemListStart
+  \resumeItem{\textbf{DevOps Bootcamp} -- TechWorld with Nana}
+  \resumeItem{\textbf{AWS Cloud Technical Essentials} -- Coursera}
+  \resumeItem{\textbf{IBM DevOps and Software Engineering Professional Certificate} -- Coursera, in progress}
+  \resumeItem{Organizing team member for the ENSI Annual Forum, TuniHack, RoboCup, and HackZone Tunisia.}
+\resumeItemListEnd
+
+\end{document}
