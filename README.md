@@ -6,12 +6,13 @@ A bilingual English/French engineering portfolio built as a small dependency-fre
 
 - Editorial, restrained UI — no generic AI landing-page styling
 - English + French
-- Four full technical case studies
+- Six bilingual technical case studies, including security teaching and ENSI Cyber Range
 - Real résumé-based experience, education, skills and certifications
-- Public PalletDataGenerator / PyPI links
+- Public PalletDataGenerator / PyPI links and three security repositories
+- Optimized local project previews with image credits and full-size views
 - English + French CV PDFs and TeX sources
 - Responsive light/dark design
-- Keyboard focus, semantic HTML and reduced-motion support
+- Keyboard focus, semantic HTML, restrained entrance/hover motion and reduced-motion support
 - SEO metadata, JSON-LD, sitemap, robots.txt and social cards
 - Zero third-party runtime/build dependencies
 - Automated GitHub Pages deployment
@@ -73,6 +74,11 @@ All bilingual portfolio content is centralized in:
 ```text
 src/content.mjs
 ```
+
+Project repository links live on each project's `repo` field. Local image metadata,
+bilingual alt text and source credits live in `projectMedia`. Preview images are
+stored in `public/assets/projects/`, with an 800px variant for smaller displays.
+See [project sources](docs/PROJECT_SOURCES.md) for the original assets and evidence.
 
 After editing:
 

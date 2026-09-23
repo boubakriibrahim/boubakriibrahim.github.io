@@ -2,7 +2,7 @@
 import { cp, mkdir, readFile, rm, writeFile } from "node:fs/promises";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
-import { identity, media, ui, capabilities, experience, education, certifications, languages, projects } from "../src/content.mjs";
+import { identity, media, projectMedia, ui, capabilities, experience, education, certifications, languages, projects } from "../src/content.mjs";
 
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
 const dist = path.join(root, "dist");
@@ -37,6 +37,7 @@ function head(lang, depth, title, description, currentPath="") {
 <link rel="canonical" href="${canonical}">
 <link rel="alternate" hreflang="${lang === "en" ? "en-CA" : "fr-CA"}" href="${canonical}">
 <link rel="alternate" hreflang="${lang === "en" ? "fr-CA" : "en-CA"}" href="${alt}">
+<script>try{const t=localStorage.getItem("ib-theme");if(t==="light"||t==="dark")document.documentElement.dataset.theme=t}catch{}</script>
 <link rel="stylesheet" href="${pre(depth)}assets/site.css">
 <link rel="icon" href="${pre(depth)}assets/favicon.svg" type="image/svg+xml">
 <meta property="og:type" content="website"><meta property="og:locale" content="${ui[lang].locale}">
@@ -53,20 +54,20 @@ function header(lang, depth, projectSlug="") {
   return `<a class="skip-link" href="#content">${lang==="en"?"Skip to content":"Aller au contenu"}</a>
 <header class="site-header" data-header>
   <div class="shell header-inner">
-    <a class="brand" href="${href(lang,depth)}" aria-label="${identity.name} — home"><span>IB</span><b>.</b></a>
-    <nav class="desktop-nav" aria-label="Primary">
+    <a class="brand" href="${href(lang,depth)}" aria-label="${identity.name} — ${lang==="en"?"home":"accueil"}"><span>IB</span><b>.</b></a>
+    <nav class="desktop-nav" aria-label="${lang==="en"?"Primary":"Navigation principale"}">
       <a href="${href(lang,depth)}#work">${e(u.navWork)}</a>
       <a href="${href(lang,depth)}#about">${e(u.navAbout)}</a>
       <a href="${href(lang,depth)}#contact">${e(u.navContact)}</a>
     </nav>
     <div class="header-actions">
-      <button class="theme-toggle" data-theme-toggle type="button" aria-label="Toggle color theme">◐</button>
-      <a class="lang-link" href="${projectSlug ? otherHref(lang,depth,current) : otherHref(lang,depth)}" hreflang="${lang==="en"?"fr":"en"}">${u.langSwitch}</a>
+      <button class="theme-toggle" data-theme-toggle type="button" aria-label="${lang==="en"?"Toggle color theme":"Changer de thème"}">◐</button>
+      <a class="lang-link" href="${projectSlug ? otherHref(lang,depth,current) : otherHref(lang,depth)}" hreflang="${lang==="en"?"fr":"en"}" lang="${lang==="en"?"fr":"en"}" aria-label="${lang==="en"?"Lire en français":"Read in English"}">${u.langSwitch}</a>
       <a class="header-contact" href="mailto:${identity.email}">${lang==="en"?"Email":"Écrire"}</a>
       <button class="menu-button" data-menu-button aria-expanded="false" aria-controls="mobile-menu"><span></span><span></span><i>Menu</i></button>
     </div>
   </div>
-  <nav id="mobile-menu" class="mobile-menu shell" data-mobile-menu hidden>
+  <nav id="mobile-menu" class="mobile-menu shell" data-mobile-menu aria-label="${lang==="en"?"Mobile navigation":"Navigation mobile"}" hidden>
     <a href="${href(lang,depth)}#work">${e(u.navWork)}</a>
     <a href="${href(lang,depth)}#about">${e(u.navAbout)}</a>
     <a href="${href(lang,depth)}#contact">${e(u.navContact)}</a>
@@ -85,11 +86,17 @@ function footer(lang, depth) {
 
 const sectionHead=(k,t,intro="")=>`<div class="section-head"><p class="eyebrow">${e(k)}</p><h2>${e(t)}</h2>${intro?`<p class="section-intro">${e(intro)}</p>`:""}</div>`;
 
-function visual(p,lang,hero=false){
-  if(p.image){
-    return `<div class="visual ${hero?"visual-hero":""} visual-image"><img src="${media[p.image]}" alt="${lang==="en"?"Synthetic warehouse scene for pallet perception workflows":"Scène synthétique d’entrepôt pour workflows de perception de palettes"}" ${hero?'fetchpriority="high"':'loading="lazy"'}><div class="visual-meta"><span>${e(tr(p.eyebrow,lang))}</span><span>${p.year}</span></div></div>`;
+function visual(p,lang,depth,hero=false){
+  const asset=projectMedia[p.slug];
+  const year=p.year?e(tr(p.year,lang)):"";
+  if(asset){
+    const src=`${pre(depth)}${asset.src}`;
+    return `<div class="visual ${hero?"visual-hero":""} visual-image visual-evidence"><img src="${src}" srcset="${src.replace('.webp','-800.webp')} 800w, ${src} ${asset.width}w" sizes="${hero?'(max-width: 1280px) 100vw, 1240px':'(max-width: 1000px) 100vw, 620px'}" width="${asset.width}" height="${asset.height}" alt="${e(tr(asset.alt,lang))}" ${hero?'fetchpriority="high"':'loading="lazy"'} decoding="async"><div class="visual-meta"><span>${e(tr(p.eyebrow,lang))}</span>${year?`<span>${year}</span>`:""}</div></div>`;
   }
-  return `<div class="visual ${hero?"visual-hero":""} visual-system tone-${p.slug}"><div class="visual-index">${String(projects.indexOf(p)+1).padStart(2,"0")}</div><div class="mini-flow">${p.flow[lang].map((x,i)=>`<span>${e(x)}</span>${i<p.flow[lang].length-1?`<b>→</b>`:""}`).join("")}</div><div class="visual-meta"><span>${e(tr(p.eyebrow,lang))}</span><span>${p.year}</span></div></div>`;
+  if(p.image){
+    return `<div class="visual ${hero?"visual-hero":""} visual-image"><img src="${media[p.image]}" alt="${lang==="en"?"Synthetic warehouse scene for pallet perception workflows":"Scène synthétique d’entrepôt pour workflows de perception de palettes"}" ${hero?'fetchpriority="high"':'loading="lazy"'} decoding="async"><div class="visual-meta"><span>${e(tr(p.eyebrow,lang))}</span><span>${year}</span></div></div>`;
+  }
+  return `<div class="visual ${hero?"visual-hero":""} visual-system tone-${p.slug}"><div class="visual-index">${String(projects.indexOf(p)+1).padStart(2,"0")}</div><div class="mini-flow">${p.flow[lang].map((x,i)=>`<span>${e(x)}</span>${i<p.flow[lang].length-1?`<b>→</b>`:""}`).join("")}</div><div class="visual-meta"><span>${e(tr(p.eyebrow,lang))}</span><span>${year}</span></div></div>`;
 }
 
 function projectRow(p,lang,depth,i){
@@ -100,10 +107,10 @@ function projectRow(p,lang,depth,i){
       <p class="project-type">${e(tr(p.eyebrow,lang))}</p>
       <h3><a href="${href(lang,depth,`work/${p.slug}/`)}">${e(tr(p.title,lang))}</a></h3>
       <p>${e(tr(p.summary,lang))}</p>
-      <div class="project-meta"><span>${p.year}</span><span>${e(p.org)}</span>${p.private?`<span>${lang==="en"?"Private product · safe detail only":"Produit privé · détails limités"}</span>`:""}</div>
-      <div class="project-actions"><a href="${href(lang,depth,`work/${p.slug}/`)}">${e(u.viewCase)} →</a>${p.public?`<a href="${identity.repo}" target="_blank" rel="noreferrer">${e(u.publicRepo)} ↗</a>`:""}</div>
+      <div class="project-meta">${p.year?`<span>${e(tr(p.year,lang))}</span>`:""}<span>${e(p.org)}</span>${p.private?`<span>${lang==="en"?"Private product · selected details":"Produit privé · détails sélectionnés"}</span>`:""}</div>
+      <div class="project-actions"><a href="${href(lang,depth,`work/${p.slug}/`)}">${e(u.viewCase)} <span aria-hidden="true">→</span></a>${p.repo?`<a href="${p.repo.url}" target="_blank" rel="noreferrer">${e(u.publicRepo)} <span aria-hidden="true">↗</span></a>`:""}</div>
     </div>
-    <a class="visual-link" href="${href(lang,depth,`work/${p.slug}/`)}" aria-label="${e(u.viewCase)}: ${e(tr(p.title,lang))}">${visual(p,lang)}</a>
+    <a class="visual-link" href="${href(lang,depth,`work/${p.slug}/`)}" aria-label="${e(u.viewCase)}: ${e(tr(p.title,lang))}">${visual(p,lang,depth)}<span class="visual-open" aria-hidden="true">↗</span></a>
   </article>`;
 }
 
@@ -130,7 +137,7 @@ function home(lang){
 <section class="hero shell">
   <div class="status"><span></span>${e(u.status)}</div>
   <div class="hero-grid"><div class="hero-main"><p class="eyebrow">${e(u.kicker)}</p><h1>${e(u.hero)}</h1><p class="hero-intro">${e(u.intro)}</p><div class="hero-links"><a href="#work">${e(u.navWork)} ↓</a><a href="${pre(d)}${cv(lang)}">${e(u.resume)} ↓</a></div></div>
-  <aside class="profile-index"><div><span>${lang==="en"?"Name":"Nom"}</span><strong>${identity.name}</strong></div><div><span>${lang==="en"?"Based":"Basé à"}</span><strong>Québec, Canada</strong></div><div><span>Core</span><strong>Full stack · Backend · DevOps</strong></div><div><span>Edge</span><strong>AI · Vision · Robotics</strong></div><p><a href="${identity.github}" target="_blank" rel="noreferrer">GitHub ↗</a><a href="${identity.linkedin}" target="_blank" rel="noreferrer">LinkedIn ↗</a></p></aside></div>
+  <aside class="profile-index"><div><span>${lang==="en"?"Name":"Nom"}</span><strong>${identity.name}</strong></div><div><span>${lang==="en"?"Based":"Basé à"}</span><strong>Québec, Canada</strong></div><div><span>${lang==="en"?"Core":"Expertise"}</span><strong>Full stack · Backend · DevOps</strong></div><div><span>${lang==="en"?"Focus":"Domaines"}</span><strong>${lang==="en"?"AI · Vision · Robotics":"IA · Vision · Robotique"}</strong></div><p><a href="${identity.github}" target="_blank" rel="noreferrer">GitHub ↗</a><a href="${identity.linkedin}" target="_blank" rel="noreferrer">LinkedIn ↗</a></p></aside></div>
   <div class="hero-rule"><span>01</span><span>${lang==="en"?"Selected engineering work":"Travaux d’ingénierie sélectionnés"}</span></div>
 </section>
 
@@ -139,7 +146,7 @@ function home(lang){
   <div class="projects">${projects.map((p,i)=>projectRow(p,lang,d,i)).join("")}</div>
 </section>
 
-<section class="section open-source"><div class="shell os-grid"><div><p class="eyebrow">${lang==="en"?"Open source spotlight":"Open source"}</p><h2>PalletDataGenerator</h2><p>${lang==="en"?"A reusable Python library for synthetic pallet and warehouse datasets with Blender, multi-format annotations, GPU rendering, keypoint tooling, testing and containerized development.":"Une bibliothèque Python réutilisable pour générer des jeux de données synthétiques de palettes et d’entrepôts avec Blender, annotations multi-format, rendu GPU, outils de keypoints, tests et développement conteneurisé."}</p><div class="os-links"><a href="${identity.repo}" target="_blank" rel="noreferrer">GitHub ↗</a><a href="${identity.pypi}" target="_blank" rel="noreferrer">PyPI ↗</a></div></div><div class="os-spec"><div><span>01</span><b>Blender</b><small>${lang==="en"?"Synthetic scenes":"Scènes synthétiques"}</small></div><div><span>02</span><b>YOLO / COCO / VOC</b><small>${lang==="en"?"Annotation exports":"Exports d’annotations"}</small></div><div><span>03</span><b>GPU</b><small>Cycles rendering</small></div><div><span>04</span><b>Keypoints</b><small>${lang==="en"?"Visibility + debug tooling":"Visibilité + débogage"}</small></div></div></div></section>
+<section class="section open-source"><div class="shell os-grid"><div><p class="eyebrow">${lang==="en"?"Open source spotlight":"Open source"}</p><h2>PalletDataGenerator</h2><p>${lang==="en"?"A reusable Python library for synthetic pallet and warehouse datasets with Blender, multi-format annotations, GPU rendering, keypoint tooling, testing and containerized development.":"Une bibliothèque Python réutilisable pour générer des jeux de données synthétiques de palettes et d’entrepôts avec Blender, annotations multi-format, rendu GPU, outils de keypoints, tests et développement conteneurisé."}</p><div class="os-links"><a href="${identity.repo}" target="_blank" rel="noreferrer">GitHub ↗</a><a href="${identity.pypi}" target="_blank" rel="noreferrer">PyPI ↗</a></div></div><div class="os-spec"><div><span>01</span><b>Blender</b><small>${lang==="en"?"Synthetic scenes":"Scènes synthétiques"}</small></div><div><span>02</span><b>YOLO / COCO / VOC</b><small>${lang==="en"?"Annotation exports":"Exports d’annotations"}</small></div><div><span>03</span><b>GPU</b><small>${lang==="en"?"Cycles rendering":"Rendu Cycles"}</small></div><div><span>04</span><b>Keypoints</b><small>${lang==="en"?"Visibility + debug tooling":"Visibilité + débogage"}</small></div></div></div></section>
 
 <section class="section shell">${sectionHead(u.capabilities,u.capabilitiesTitle)}${capabilityRows(lang)}</section>
 
@@ -163,24 +170,25 @@ ${contact(lang,d)}
 
 function projectPage(p,lang){
   const d=lang==="en"?2:3,u=ui[lang],idx=projects.indexOf(p),next=projects[(idx+1)%projects.length];
-  const gallery=p.public?`<div class="gallery shell"><figure><img src="${media.warehouse}" alt="${lang==="en"?"Synthetic warehouse scene":"Scène synthétique d’entrepôt"}" loading="lazy"><figcaption>${lang==="en"?"Synthetic warehouse output from the public PalletDataGenerator project.":"Sortie synthétique d’entrepôt du projet public PalletDataGenerator."}</figcaption></figure><figure><img src="${media.pallet}" alt="${lang==="en"?"Synthetic pallet scene":"Scène synthétique de palette"}" loading="lazy"><figcaption>${lang==="en"?"Controlled scene generation for perception experiments.":"Génération de scènes contrôlées pour les expérimentations de perception."}</figcaption></figure></div>`:"";
+  const gallery=p.gallery?`<div class="gallery shell"><figure><img src="${media.warehouse}" alt="${lang==="en"?"Synthetic warehouse scene":"Scène synthétique d’entrepôt"}" loading="lazy"><figcaption>${lang==="en"?"Synthetic warehouse output from the public PalletDataGenerator project.":"Sortie synthétique d’entrepôt du projet public PalletDataGenerator."}</figcaption></figure><figure><img src="${media.pallet}" alt="${lang==="en"?"Synthetic pallet scene":"Scène synthétique de palette"}" loading="lazy"><figcaption>${lang==="en"?"Controlled scene generation for perception experiments.":"Génération de scènes contrôlées pour les expérimentations de perception."}</figcaption></figure></div>`:"";
   const body=`<main id="content">
 <section class="case-hero shell">
-<a class="back" href="${href(lang,d)}">← ${e(u.back)}</a>
-<div class="case-head"><div><p class="eyebrow">${e(tr(p.eyebrow,lang))}</p><h1>${e(tr(p.title,lang))}</h1><p class="case-summary">${e(tr(p.summary,lang))}</p></div><dl><div><dt>${lang==="en"?"Role":"Rôle"}</dt><dd>${e(tr(p.role,lang))}</dd></div><div><dt>${lang==="en"?"Organization":"Organisation"}</dt><dd>${e(p.org)}</dd></div><div><dt>${lang==="en"?"Period":"Période"}</dt><dd>${p.year}</dd></div>${p.public?`<div><dt>Open source</dt><dd><a href="${identity.repo}" target="_blank" rel="noreferrer">PalletDataGenerator ↗</a></dd></div>`:""}</dl></div>
-${visual(p,lang,true)}
+<a class="back" href="${href(lang,d)}#work"><span aria-hidden="true">←</span> ${e(u.back)}</a>
+<div class="case-head"><div><p class="eyebrow">${e(tr(p.eyebrow,lang))}</p><h1>${e(tr(p.title,lang))}</h1><p class="case-summary">${e(tr(p.summary,lang))}</p></div><dl><div><dt>${lang==="en"?"Role":"Rôle"}</dt><dd>${e(tr(p.role,lang))}</dd></div><div><dt>${lang==="en"?"Organization":"Organisation"}</dt><dd>${e(p.org)}</dd></div>${p.year?`<div><dt>${lang==="en"?"Period":"Période"}</dt><dd>${e(tr(p.year,lang))}</dd></div>`:""}${p.repo?`<div><dt>${lang==="en"?"Code":"Code source"}</dt><dd><a href="${p.repo.url}" target="_blank" rel="noreferrer">${e(p.repo.name)} ↗</a></dd></div>`:""}</dl></div>
+${visual(p,lang,d,true)}
+${projectMedia[p.slug]?`<p class="media-credit">${e(tr(projectMedia[p.slug].caption,lang))}<a href="${projectMedia[p.slug].source}" target="_blank" rel="noreferrer">${lang==="en"?"Image source":"Source de l’image"} ↗</a><a href="${pre(d)}${projectMedia[p.slug].src}" target="_blank" rel="noreferrer">${lang==="en"?"View full image":"Voir l’image entière"} ↗</a></p>`:""}
 </section>
 
 <section class="case-section shell case-context"><p class="eyebrow">01 · ${e(u.context)}</p><div><h2>${e(tr(p.title,lang))}</h2><p>${e(tr(p.context,lang))}</p></div></section>
 
 <section class="case-section shell"><p class="eyebrow">02 · ${e(u.built)}</p><div class="case-list">${p.built[lang].map((x,i)=>`<article><span>${String(i+1).padStart(2,"0")}</span><p>${e(x)}</p></article>`).join("")}</div></section>
 
-<section class="case-section flow-section"><div class="shell"><p class="eyebrow">03 · ${lang==="en"?"System flow":"Flux système"}</p><div class="flow">${p.flow[lang].map((x,i)=>`<div><span>${String(i+1).padStart(2,"0")}</span><b>${e(x)}</b></div>${i<p.flow[lang].length-1?`<i>→</i>`:""}`).join("")}</div></div></section>
+<section class="case-section flow-section"><div class="shell"><p class="eyebrow">03 · ${p.flowLabel?e(tr(p.flowLabel,lang)):(lang==="en"?"System flow":"Flux système")}</p><div class="flow">${p.flow[lang].map((x,i)=>`<div><span>${String(i+1).padStart(2,"0")}</span><b>${e(x)}</b></div>${i<p.flow[lang].length-1?`<i>→</i>`:""}`).join("")}</div></div></section>
 ${gallery}
 <section class="case-section shell"><p class="eyebrow">04 · ${e(u.decisions)}</p><div class="decisions">${p.decisions[lang].map((x,i)=>`<article><span>${String(i+1).padStart(2,"0")}</span><h3>${e(x[0])}</h3><p>${e(x[1])}</p></article>`).join("")}</div></section>
 
 <section class="case-section shell stack"><p class="eyebrow">05 · ${e(u.stack)}</p><div>${p.tech.map(x=>`<span>${e(x)}</span>`).join("")}<p>${e(u.source)}</p></div></section>
-<a class="next shell" href="${href(lang,d,`work/${next.slug}/`)}"><span class="eyebrow">${e(u.next)}</span><strong>${e(tr(next.title,lang))}</strong><b>→</b></a>
+<a class="next shell" href="${href(lang,d,`work/${next.slug}/`)}"><span class="eyebrow">${e(u.next)}</span><strong>${e(tr(next.title,lang))}</strong><b aria-hidden="true">→</b></a>
 ${contact(lang,d)}
 </main>`;
   return shell(lang,d,`work/${p.slug}/`,`${tr(p.title,lang)} — ${identity.name}`,tr(p.summary,lang),body,"case",p.slug);

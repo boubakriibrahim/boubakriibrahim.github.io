@@ -15,6 +15,28 @@ export const media = {
   pallet: "https://raw.githubusercontent.com/boubakriibrahim/PalletDataGenerator/main/readme_images/examples/single_pallet_example_1.png"
 };
 
+// Local previews and source credits are shared by the two language versions.
+export const projectMedia = {
+  "hackzone-tunisia-x": {
+    src: "assets/projects/hackzone-x.webp", width: 1600, height: 611,
+    alt: {en:"HackZone Tunisia X event banner, April 16, 2022",fr:"Bannière de HackZone Tunisia X, le 16 avril 2022"},
+    caption: {en:"HackZone X event artwork · CSI ENSI",fr:"Visuel de l’événement HackZone X · CSI ENSI"},
+    source: "https://www.tuniscope.com/article/329306/culture/evenements/rendez-vous-incontournable-de-la-cybersecurite-en-tunisie-074209"
+  },
+  "web-security-challenges": {
+    src: "assets/projects/web-challenges.webp", width: 1600, height: 934,
+    alt: {en:"ENSI and CSI web and network security training banner",fr:"Bannière de formation à la sécurité web et réseau de l’ENSI et du CSI"},
+    caption: {en:"Original training banner from Web_Challenges",fr:"Bannière de formation originale du dépôt Web_Challenges"},
+    source: "https://github.com/boubakriibrahim/Web_Challenges/blob/master/banner.png"
+  },
+  "ensi-cyber-range": {
+    src: "assets/projects/ensi-cyber-range.webp", width: 1198, height: 800,
+    alt: {en:"Cyber Range desktop interface with network discovery, target selection, scenario explanation and start/stop controls",fr:"Interface Cyber Range : découverte réseau, sélection des cibles, explication du scénario et commandes de démarrage et d’arrêt"},
+    caption: {en:"Original application interface · ENSI academic team project",fr:"Interface originale de l’application · Projet académique en équipe à l’ENSI"},
+    source: "https://github.com/boubakriibrahim/ENSI-Cyber-Range-App#interface"
+  }
+};
+
 export const ui = {
   en: {
     locale: "en_CA",
@@ -173,7 +195,8 @@ export const languages = {
 
 export const projects = [
   {
-    slug:"perception-robotics", year:"2024—2026", image:"warehouse", public:true,
+    slug:"perception-robotics", year:"2024—2026", image:"warehouse", gallery:true,
+    repo:{name:"PalletDataGenerator",url:identity.repo},
     eyebrow:{en:"Computer vision · Robotics",fr:"Vision par ordinateur · Robotique"},
     title:{en:"Industrial Perception & Robotics",fr:"Perception industrielle & robotique"},
     summary:{
@@ -198,7 +221,7 @@ export const projects = [
     flow:{en:["Synthetic data","YOLO-Pose","Inference","ROS 2","Jetson"],fr:["Données synthétiques","YOLO-Pose","Inférence","ROS 2","Jetson"]}
   },
   {
-    slug:"modular-ai-platform", year:"2024—Now", private:true,
+    slug:"modular-ai-platform", year:{en:"2024—Present",fr:"2024—Aujourd’hui"}, private:true,
     eyebrow:{en:"Platform engineering · AI integration",fr:"Ingénierie plateforme · Intégration IA"},
     title:{en:"Modular AI Platform",fr:"Plateforme IA modulaire"},
     summary:{
@@ -249,15 +272,16 @@ export const projects = [
   },
   {
     slug:"hackzone-tunisia-x", year:"2022",
+    repo:{name:"HZ-X-challenges",url:"https://github.com/boubakriibrahim/HZ-X-challenges"},
     eyebrow:{en:"Infrastructure · Cybersecurity",fr:"Infrastructure · Cybersécurité"},
     title:{en:"HackZone Tunisia X",fr:"HackZone Tunisia X"},
     summary:{
-      en:"Infrastructure and technical operations for a 24-hour capture-the-flag event with more than 100 teams and 300 participants.",
-      fr:"Infrastructure et opérations techniques pour un CTF de 24 heures réunissant plus de 100 équipes et 300 participants."
+      en:"Challenge preparation, infrastructure and technical operations for HackZone Tunisia X. The public archive includes containerized web challenges and an Android reverse-engineering exercise.",
+      fr:"Préparation de défis, infrastructure et opérations techniques pour HackZone Tunisia X. Le dépôt public contient des défis web conteneurisés et un exercice de rétro-ingénierie Android."
     },
     role:{en:"Infrastructure & Cybersecurity",fr:"Infrastructure & cybersécurité"},
     org:"HackZone Tunisia X",
-    tech:["Azure","Python","Kali Linux","Git","Docker","Web security"],
+    tech:["Azure","Python","Flask","PHP","Docker Compose","Nginx","Android"],
     context:{
       en:"A live CTF needs competition services to stay available while participants actively probe challenge environments. The work centered on infrastructure deployment, challenge preparation, monitoring and incident response.",
       fr:"Un CTF en direct doit maintenir les services disponibles pendant que les participants testent activement les environnements. Le travail portait sur le déploiement d’infrastructure, la préparation des défis, la supervision et la résolution d’incidents."
@@ -271,5 +295,59 @@ export const projects = [
       fr:[["Disponibilité en contexte adversarial","La supervision et le support opérationnel faisaient partie de la conception de l’événement."],["Isolation et reproductibilité","Des environnements conteneurisés facilitent la séparation des services et leur remise en service."],["Exploiter ce que l’on construit","Le travail d’infrastructure incluait le diagnostic en direct sous la pression de l’événement."]]
     },
     flow:{en:["Challenges","Azure / Docker","Monitoring","Support","Participants"],fr:["Défis","Azure / Docker","Supervision","Support","Participants"]}
+  },
+  {
+    slug:"web-security-challenges",
+    repo:{name:"Web_Challenges",url:"https://github.com/boubakriibrahim/Web_Challenges"},
+    eyebrow:{en:"Security education · Web challenges",fr:"Formation en sécurité · Défis web"},
+    title:{en:"Web Security Challenges",fr:"Défis de sécurité web"},
+    summary:{
+      en:"A collection of web challenges used for security teaching, with focused exercises around SQL injection, PHP comparisons, authentication and JWTs.",
+      fr:"Une collection de défis web utilisée pour enseigner la sécurité, avec des exercices ciblés sur l’injection SQL, les comparaisons PHP, l’authentification et les JWT."
+    },
+    role:{en:"Challenge author · Security teaching",fr:"Auteur de défis · Formation en sécurité"},
+    org:"CSI ENSI",
+    tech:["PHP","JavaScript","HTML / CSS","SQL","JWT","Composer"],
+    context:{
+      en:"These exercises turn web-security concepts into small applications that students can inspect and reason about. Each challenge focuses on a specific behavior in application code, from input handling to authentication.",
+      fr:"Ces exercices transforment les notions de sécurité web en petites applications que les étudiants peuvent examiner et analyser. Chaque défi porte sur un comportement précis du code, du traitement des entrées à l’authentification."
+    },
+    built:{
+      en:["Prepared web-security challenges for teaching and hands-on practice.","Organized separate exercises for SQL injection, loose PHP comparisons, regular-expression handling and JWT authentication.","Published the PHP and JavaScript sources, page assets and supporting SQL files so the exercises can be inspected."],
+      fr:["Préparé des défis de sécurité web pour la formation et la mise en pratique.","Organisé des exercices distincts sur l’injection SQL, les comparaisons faibles en PHP, les expressions régulières et l’authentification JWT.","Publié les sources PHP et JavaScript, les ressources des pages et les fichiers SQL associés pour permettre l’étude des exercices."]
+    },
+    decisions:{
+      en:[["One concept at a time","Separate challenge directories make it possible to study individual application behaviors."],["Source available for discussion","The application code gives students concrete material to inspect when discussing why a vulnerability exists."],["Teaching context","These intentionally vulnerable exercises are learning material for a controlled lab environment."]],
+      fr:[["Une notion à la fois","Des répertoires distincts permettent d’étudier séparément les comportements des applications."],["Du code pour la discussion","Les sources donnent aux étudiants un support concret pour comprendre l’origine d’une vulnérabilité."],["Un cadre pédagogique","Ces exercices volontairement vulnérables sont des supports d’apprentissage destinés à un laboratoire contrôlé."]]
+    },
+    flow:{en:["Challenge","Web interface","PHP / JavaScript","Application behavior","Discussion"],fr:["Défi","Interface web","PHP / JavaScript","Comportement observé","Discussion"]},
+    flowLabel:{en:"Learning workflow",fr:"Parcours pédagogique"}
+  },
+  {
+    slug:"ensi-cyber-range", year:"2022",
+    repo:{name:"ENSI-Cyber-Range-App",url:"https://github.com/boubakriibrahim/ENSI-Cyber-Range-App"},
+    eyebrow:{en:"Network security · Desktop application",fr:"Sécurité réseau · Application de bureau"},
+    title:{en:"ENSI Cyber Range",fr:"Cyber Range ENSI"},
+    summary:{
+      en:"An academic team project that brings network discovery, scenario explanations and experiment controls into a Python desktop interface for security learning.",
+      fr:"Un projet académique en équipe qui réunit découverte réseau, explications de scénarios et commandes d’expérimentation dans une interface Python dédiée à l’apprentissage de la sécurité."
+    },
+    role:{en:"Developer · Academic team project",fr:"Développeur · Projet académique en équipe"},
+    org:"ENSI",
+    tech:["Python","PySide6 / Qt","Scapy","Qt Material","netifaces"],
+    context:{
+      en:"Developed as an ENSI design and programming project, Cyber Range puts explanations beside the controls used in network-security experiments. The interface brings discovery, target selection and experiment feedback into one place.",
+      fr:"Développé dans le cadre d’un projet de conception et de programmation à l’ENSI, Cyber Range place les explications à côté des commandes d’expérimentation en sécurité réseau. L’interface rassemble découverte, sélection des cibles et retours d’exécution."
+    },
+    built:{
+      en:["Contributed to a Python desktop application built with PySide6 and Qt Material, alongside Adem Hmissa.","The interface includes network discovery, target and interface selection, scenario descriptions, a console and start/stop controls.","Separate Python modules cover network scanning, ARP spoofing, DHCP starvation and SYN flooding for lab demonstrations."],
+      fr:["Contribué à une application de bureau Python avec PySide6 et Qt Material, aux côtés d’Adem Hmissa.","L’interface propose la découverte réseau, la sélection des cibles et des interfaces, la description des scénarios, une console et des commandes de démarrage et d’arrêt.","Des modules Python distincts couvrent le scan réseau, l’usurpation ARP, la saturation DHCP et le SYN flooding pour des démonstrations en laboratoire."]
+    },
+    decisions:{
+      en:[["Explanation beside execution","Scenario descriptions appear in the same interface as the experiment controls, making the teaching context visible."],["Background work","QRunnable workers and a QThreadPool separate background tasks from the main Qt event loop."],["Separate network modules","Scanning and network scenarios live in separate Python modules, while the desktop window coordinates user input."]],
+      fr:[["L’explication à côté de l’exécution","Les descriptions des scénarios accompagnent les commandes d’expérimentation pour garder le contexte pédagogique visible."],["Traitements en arrière-plan","Des workers QRunnable et un QThreadPool séparent les tâches en arrière-plan de la boucle principale Qt."],["Modules réseau distincts","Le scan et les scénarios réseau résident dans des modules Python séparés ; la fenêtre de bureau coordonne les entrées de l’utilisateur."]]
+    },
+    flow:{en:["Discover","Select targets","Read explanation","Run / stop","Inspect feedback"],fr:["Découvrir","Choisir les cibles","Lire l’explication","Démarrer / arrêter","Observer les retours"]},
+    flowLabel:{en:"Application workflow",fr:"Parcours dans l’application"}
   }
 ];
