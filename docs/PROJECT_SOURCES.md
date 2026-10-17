@@ -28,3 +28,10 @@ No challenge applications were executed as part of this portfolio update.
 Images are resized and encoded as WebP without changing their content. Case
 studies include visible source credits and a link to view the complete image.
 The three 800px previews total approximately 93 KB; the larger files total 249 KB.
+
+## Service Desk
+
+- The case study details are based on the project README, product overview, architecture notes, security rules and demo walkthrough.
+- Public source: [service-desk](https://github.com/boubakriibrahim/service-desk).
+- `public/assets/projects/service-desk-architecture.svg` is a diagram created from the project implementation. It has no external image source.
+- `public/assets/projects/service-desk-film.mp4` and `service-desk-film-poster.webp` are the project's own launch film and its title-card poster, produced for the project and reused here. The film does not autoplay and loads only on demand.

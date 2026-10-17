@@ -34,6 +34,11 @@ export const projectMedia = {
     alt: {en:"Cyber Range desktop interface with network discovery, target selection, scenario explanation and start/stop controls",fr:"Interface Cyber Range : découverte réseau, sélection des cibles, explication du scénario et commandes de démarrage et d’arrêt"},
     caption: {en:"Original application interface · ENSI academic team project",fr:"Interface originale de l’application · Projet académique en équipe à l’ENSI"},
     source: "https://github.com/boubakriibrahim/ENSI-Cyber-Range-App#interface"
+  },
+  "service-desk": {
+    src: "assets/projects/service-desk-architecture.svg", width: 1360, height: 774,
+    alt: {en:"Service Desk diagram showing the web app, API, request checker, database, files and optional model services",fr:"Schéma de Service Desk montrant l’application web, l’API, le vérificateur de demandes, la base de données, les fichiers et les services de modèles facultatifs"},
+    caption: {en:"Architecture diagram created for this project",fr:"Schéma d’architecture créé pour ce projet"}
   }
 };
 
@@ -61,7 +66,7 @@ export const ui = {
     contactTitle: "Building something that needs real engineering depth?",
     contactBody: "Open to full-stack, backend, platform, DevOps and AI-integration opportunities in Québec, Canada and remote teams.",
     resume: "Download résumé", viewCase: "Read case study", publicRepo: "Public repository",
-    source: "Project details are based on verified résumé content and public project material only.",
+    source: "Project details are based on available project documentation and résumé information.",
     context: "Context & problem", built: "What I built", decisions: "Engineering decisions", stack: "Stack",
     back: "Back to portfolio", next: "Next project",
     langSwitch: "FR"
@@ -89,7 +94,7 @@ export const ui = {
     contactTitle: "Un produit qui demande une vraie profondeur d’ingénierie ?",
     contactBody: "Ouvert aux opportunités full stack, backend, plateforme, DevOps et intégration IA au Québec, au Canada et en télétravail.",
     resume: "Télécharger le CV", viewCase: "Voir l’étude de cas", publicRepo: "Dépôt public",
-    source: "Les détails des projets proviennent uniquement du CV et de sources publiques vérifiables.",
+    source: "Les détails des projets s’appuient sur la documentation disponible et les informations du CV.",
     context: "Contexte & problème", built: "Ce que j’ai construit", decisions: "Décisions d’ingénierie", stack: "Technologies",
     back: "Retour au portfolio", next: "Projet suivant",
     langSwitch: "EN"
@@ -219,6 +224,64 @@ export const projects = [
       fr:[["Données synthétiques comme infrastructure","Le générateur a été conçu comme un système réutilisable plutôt qu’un script ponctuel, avec configuration, formats d’export et sorties de débogage."],["Évaluation reproductible","Le travail modèle a été structuré autour de la robustesse, de la généralisation et des compromis performance/latence plutôt que d’une métrique unique."],["Déploiement intégré au workflow","ROS 2 et le déploiement edge faisaient partie du chemin d’ingénierie au lieu d’être reportés après le développement du modèle."]]
     },
     flow:{en:["Synthetic data","YOLO-Pose","Inference","ROS 2","Jetson"],fr:["Données synthétiques","YOLO-Pose","Inférence","ROS 2","Jetson"]}
+  },
+  {
+    slug:"service-desk", year:"2026",
+    repo:{name:"service-desk",url:"https://github.com/boubakriibrahim/service-desk"},
+    video:{
+      src:"assets/projects/service-desk-film.mp4",
+      poster:"assets/projects/service-desk-film-poster.webp",
+      width:1920, height:1080,
+      caption:{en:"Launch film · 1:18. Every value on screen comes from a real run of the app.",fr:"Film de lancement · 1:18. Chaque valeur à l’écran provient d’une exécution réelle de l’application."},
+      alt:{en:"Service Desk launch film: the model suggests, the app checks, a person approves.",fr:"Film de lancement de Service Desk : le modèle propose, l’application vérifie, une personne approuve."}
+    },
+    eyebrow:{en:"Full stack · Guarded AI workflow",fr:"Full stack · Workflow IA encadré"},
+    title:{en:"Service Desk",fr:"Service Desk"},
+    summary:{
+      en:"An AI-assisted tool for field service teams. It gathers the manuals, bulletins, service history and parts a case needs, drafts a sourced escalation brief, and never writes a work order without a person's approval.",
+      fr:"Un outil assisté par IA pour les équipes techniques terrain. Il rassemble les manuels, bulletins, historiques et pièces utiles à un dossier, rédige un rapport d’escalade sourcé et ne crée jamais d’ordre de travail sans l’approbation d’une personne."
+    },
+    role:{en:"Designer and developer",fr:"Conception et développement"},
+    org:{en:"Personal project",fr:"Projet personnel"},
+    tech:["Next.js","React","TypeScript","FastAPI","PostgreSQL","pgvector","LangGraph","Laya","Docker Compose"],
+    context:{
+      en:"When a packaging line stops for the third time in a month, the engineer needs the service manual, the firmware bulletin, the maintenance agreement, the service history and the parts stock. Service Desk turns one request into a reviewable escalation brief without letting a model decide permissions or act on its own.",
+      fr:"Quand une ligne de conditionnement s’arrête pour la troisième fois en un mois, l’ingénieur a besoin du manuel, du bulletin de micrologiciel, du contrat de maintenance, de l’historique et du stock de pièces. Service Desk transforme une demande en un rapport d’escalade vérifiable, sans laisser un modèle décider des droits ni agir seul."
+    },
+    built:{
+      en:[
+        "Runs each investigation as a LangGraph pipeline: request guard, permitted retrieval, operations data, decision signals, model routing, brief and work-order proposal.",
+        "Screens requests with a local guard model (Laya) for jailbreaks, prompt injection, policy evasion and data exfiltration before anything is searched.",
+        "Retrieves only the documents the signed-in user may read, combining pgvector similarity with PostgreSQL full-text search through reciprocal rank fusion.",
+        "Checks every citation in the brief against the passages actually retrieved and removes anything unsupported.",
+        "Routes the report only to a model endpoint cleared for the most sensitive passage in the evidence.",
+        "Locks work orders behind approval: the API checks the case has not changed, writes the work order and records an audit event."
+      ],
+      fr:[
+        "Exécute chaque enquête comme un pipeline LangGraph : vérification de la demande, recherche autorisée, données d’exploitation, signaux de décision, routage du modèle, rapport et proposition d’ordre de travail.",
+        "Filtre les demandes avec un modèle de garde local (Laya) : jailbreaks, injection de consignes, contournement de politique et exfiltration de données, avant toute recherche.",
+        "Ne récupère que les documents que la personne connectée peut lire, en combinant la similarité pgvector et la recherche plein texte PostgreSQL par fusion de rangs réciproque.",
+        "Vérifie chaque citation du rapport par rapport aux passages réellement récupérés et retire tout ce qui n’est pas étayé.",
+        "N’achemine le rapport que vers un point de terminaison de modèle autorisé pour le passage le plus sensible du dossier.",
+        "Réserve les ordres de travail à une approbation : l’API vérifie que le dossier n’a pas changé, écrit l’ordre de travail et consigne un événement d’audit."
+      ]
+    },
+    decisions:{
+      en:[
+        ["Permissions stay in the API","Access is enforced on every list, read, search and approval; the model never decides who can see what."],
+        ["People approve the writes","A model may propose a work order, but an approver executes it, so the system cannot act on its own."],
+        ["The guard runs before generation","A request that fails the local check never reaches retrieval or the writing model."],
+        ["Claims stay traceable","Each citation is checked against retrieved passages, and the report goes only to a model endpoint cleared for the evidence."]
+      ],
+      fr:[
+        ["Les droits restent dans l’API","L’accès est vérifié sur chaque liste, lecture, recherche et approbation ; le modèle ne décide jamais qui peut voir quoi."],
+        ["Des personnes approuvent les écritures","Un modèle peut proposer un ordre de travail, mais un approbateur l’exécute : le système ne peut pas agir seul."],
+        ["La garde s’exécute avant la génération","Une demande qui échoue au contrôle local n’atteint jamais la recherche ni le modèle de rédaction."],
+        ["Des affirmations traçables","Chaque citation est vérifiée par rapport aux passages récupérés, et le rapport n’est envoyé qu’à un point de terminaison autorisé pour ces éléments."]
+      ]
+    },
+    flow:{en:["Request guard","Permitted retrieval","Operations data","Brief + citations","Human approval"],fr:["Vérification","Recherche autorisée","Données d’exploitation","Rapport + citations","Approbation humaine"]},
+    flowLabel:{en:"Investigation flow",fr:"Parcours d’enquête"}
   },
   {
     slug:"modular-ai-platform", year:{en:"2024—Present",fr:"2024—Aujourd’hui"}, private:true,

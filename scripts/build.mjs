@@ -91,12 +91,28 @@ function visual(p,lang,depth,hero=false){
   const year=p.year?e(tr(p.year,lang)):"";
   if(asset){
     const src=`${pre(depth)}${asset.src}`;
-    return `<div class="visual ${hero?"visual-hero":""} visual-image visual-evidence"><img src="${src}" srcset="${src.replace('.webp','-800.webp')} 800w, ${src} ${asset.width}w" sizes="${hero?'(max-width: 1280px) 100vw, 1240px':'(max-width: 1000px) 100vw, 620px'}" width="${asset.width}" height="${asset.height}" alt="${e(tr(asset.alt,lang))}" ${hero?'fetchpriority="high"':'loading="lazy"'} decoding="async"><div class="visual-meta"><span>${e(tr(p.eyebrow,lang))}</span>${year?`<span>${year}</span>`:""}</div></div>`;
+    const responsive=asset.src.endsWith(".webp")?`srcset="${src.replace('.webp','-800.webp')} 800w, ${src} ${asset.width}w" sizes="${hero?'(max-width: 1280px) 100vw, 1240px':'(max-width: 1000px) 100vw, 620px'}"`:"";
+    return `<div class="visual ${hero?"visual-hero":""} visual-image visual-evidence"><img src="${src}" ${responsive} width="${asset.width}" height="${asset.height}" alt="${e(tr(asset.alt,lang))}" ${hero?'fetchpriority="high"':'loading="lazy"'} decoding="async"><div class="visual-meta"><span>${e(tr(p.eyebrow,lang))}</span>${year?`<span>${year}</span>`:""}</div></div>`;
   }
   if(p.image){
     return `<div class="visual ${hero?"visual-hero":""} visual-image"><img src="${media[p.image]}" alt="${lang==="en"?"Synthetic warehouse scene for pallet perception workflows":"Scène synthétique d’entrepôt pour workflows de perception de palettes"}" ${hero?'fetchpriority="high"':'loading="lazy"'} decoding="async"><div class="visual-meta"><span>${e(tr(p.eyebrow,lang))}</span><span>${year}</span></div></div>`;
   }
   return `<div class="visual ${hero?"visual-hero":""} visual-system tone-${p.slug}"><div class="visual-index">${String(projects.indexOf(p)+1).padStart(2,"0")}</div><div class="mini-flow">${p.flow[lang].map((x,i)=>`<span>${e(x)}</span>${i<p.flow[lang].length-1?`<b>→</b>`:""}`).join("")}</div><div class="visual-meta"><span>${e(tr(p.eyebrow,lang))}</span><span>${year}</span></div></div>`;
+}
+
+function mediaCredit(p,lang,depth){
+  const a=projectMedia[p.slug];if(!a)return "";
+  return `<p class="media-credit">${e(tr(a.caption,lang))}${a.source?`<a href="${a.source}" target="_blank" rel="noreferrer">${lang==="en"?"Image source":"Source de l’image"} ↗</a>`:""}<a href="${pre(depth)}${a.src}" target="_blank" rel="noreferrer">${lang==="en"?"View full image":"Voir l’image entière"} ↗</a></p>`;
+}
+
+function caseFilm(p,lang,depth){
+  const v=p.video,src=`${pre(depth)}${v.src}`;
+  return `<figure class="film"><video controls playsinline preload="metadata" poster="${pre(depth)}${v.poster}" width="${v.width}" height="${v.height}" aria-label="${e(tr(v.alt,lang))}"><source src="${src}" type="video/mp4"><a href="${src}">${lang==="en"?"Download the film":"Télécharger le film"}</a></video></figure><p class="media-credit">${e(tr(v.caption,lang))}<a href="${src}" target="_blank" rel="noreferrer">${lang==="en"?"Open the film":"Ouvrir le film"} ↗</a></p>`;
+}
+
+function caseFigure(p,lang,depth){
+  const a=projectMedia[p.slug];if(!a)return "";
+  return `<section class="case-section shell case-media"><p class="eyebrow">${lang==="en"?"System architecture":"Architecture système"}</p><figure class="case-figure"><img src="${pre(depth)}${a.src}" width="${a.width}" height="${a.height}" alt="${e(tr(a.alt,lang))}" loading="lazy" decoding="async"></figure>${mediaCredit(p,lang,depth)}</section>`;
 }
 
 function projectRow(p,lang,depth,i){
@@ -107,7 +123,7 @@ function projectRow(p,lang,depth,i){
       <p class="project-type">${e(tr(p.eyebrow,lang))}</p>
       <h3><a href="${href(lang,depth,`work/${p.slug}/`)}">${e(tr(p.title,lang))}</a></h3>
       <p>${e(tr(p.summary,lang))}</p>
-      <div class="project-meta">${p.year?`<span>${e(tr(p.year,lang))}</span>`:""}<span>${e(p.org)}</span>${p.private?`<span>${lang==="en"?"Private product · selected details":"Produit privé · détails sélectionnés"}</span>`:""}</div>
+      <div class="project-meta">${p.year?`<span>${e(tr(p.year,lang))}</span>`:""}<span>${e(tr(p.org,lang))}</span>${p.private?`<span>${lang==="en"?"Private product · selected details":"Produit privé · détails sélectionnés"}</span>`:""}</div>
       <div class="project-actions"><a href="${href(lang,depth,`work/${p.slug}/`)}">${e(u.viewCase)} <span aria-hidden="true">→</span></a>${p.repo?`<a href="${p.repo.url}" target="_blank" rel="noreferrer">${e(u.publicRepo)} <span aria-hidden="true">↗</span></a>`:""}</div>
     </div>
     <a class="visual-link" href="${href(lang,depth,`work/${p.slug}/`)}" aria-label="${e(u.viewCase)}: ${e(tr(p.title,lang))}">${visual(p,lang,depth)}<span class="visual-open" aria-hidden="true">↗</span></a>
@@ -174,10 +190,11 @@ function projectPage(p,lang){
   const body=`<main id="content">
 <section class="case-hero shell">
 <a class="back" href="${href(lang,d)}#work"><span aria-hidden="true">←</span> ${e(u.back)}</a>
-<div class="case-head"><div><p class="eyebrow">${e(tr(p.eyebrow,lang))}</p><h1>${e(tr(p.title,lang))}</h1><p class="case-summary">${e(tr(p.summary,lang))}</p></div><dl><div><dt>${lang==="en"?"Role":"Rôle"}</dt><dd>${e(tr(p.role,lang))}</dd></div><div><dt>${lang==="en"?"Organization":"Organisation"}</dt><dd>${e(p.org)}</dd></div>${p.year?`<div><dt>${lang==="en"?"Period":"Période"}</dt><dd>${e(tr(p.year,lang))}</dd></div>`:""}${p.repo?`<div><dt>${lang==="en"?"Code":"Code source"}</dt><dd><a href="${p.repo.url}" target="_blank" rel="noreferrer">${e(p.repo.name)} ↗</a></dd></div>`:""}</dl></div>
-${visual(p,lang,d,true)}
-${projectMedia[p.slug]?`<p class="media-credit">${e(tr(projectMedia[p.slug].caption,lang))}<a href="${projectMedia[p.slug].source}" target="_blank" rel="noreferrer">${lang==="en"?"Image source":"Source de l’image"} ↗</a><a href="${pre(d)}${projectMedia[p.slug].src}" target="_blank" rel="noreferrer">${lang==="en"?"View full image":"Voir l’image entière"} ↗</a></p>`:""}
+<div class="case-head"><div><p class="eyebrow">${e(tr(p.eyebrow,lang))}</p><h1>${e(tr(p.title,lang))}</h1><p class="case-summary">${e(tr(p.summary,lang))}</p></div><dl><div><dt>${lang==="en"?"Role":"Rôle"}</dt><dd>${e(tr(p.role,lang))}</dd></div><div><dt>${lang==="en"?"Organization":"Organisation"}</dt><dd>${e(tr(p.org,lang))}</dd></div>${p.year?`<div><dt>${lang==="en"?"Period":"Période"}</dt><dd>${e(tr(p.year,lang))}</dd></div>`:""}${p.repo?`<div><dt>${lang==="en"?"Code":"Code source"}</dt><dd><a href="${p.repo.url}" target="_blank" rel="noreferrer">${e(p.repo.name)} ↗</a></dd></div>`:""}</dl></div>
+${p.video?caseFilm(p,lang,d):visual(p,lang,d,true)}
+${p.video?"":mediaCredit(p,lang,d)}
 </section>
+${p.video?caseFigure(p,lang,d):""}
 
 <section class="case-section shell case-context"><p class="eyebrow">01 · ${e(u.context)}</p><div><h2>${e(tr(p.title,lang))}</h2><p>${e(tr(p.context,lang))}</p></div></section>
 

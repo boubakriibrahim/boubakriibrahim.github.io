@@ -9,6 +9,7 @@ A bilingual English/French engineering portfolio built as a small dependency-fre
 - Six bilingual technical case studies, including security teaching and ENSI Cyber Range
 - Real résumé-based experience, education, skills and certifications
 - Public PalletDataGenerator / PyPI links and three security repositories
+- Service Desk case study with its launch film and a linked public repository
 - Optimized local project previews with image credits and full-size views
 - English + French CV PDFs and TeX sources
 - Responsive light/dark design
@@ -78,6 +79,8 @@ src/content.mjs
 Project repository links live on each project's `repo` field. Local image metadata,
 bilingual alt text and source credits live in `projectMedia`. Preview images are
 stored in `public/assets/projects/`, with an 800px variant for smaller displays.
+A project can carry a `video` field (source, poster, captions); when it does, the
+film becomes the case-study hero and its still image moves into a labelled section.
 See [project sources](docs/PROJECT_SOURCES.md) for the original assets and evidence.
 
 After editing:

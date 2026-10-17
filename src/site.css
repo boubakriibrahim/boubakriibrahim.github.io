@@ -84,6 +84,10 @@ a,button {touch-action:manipulation}
 .case-hero {padding-bottom:32px}
 .case-head dl a {text-underline-offset:4px}
 .case-head dl a:hover {color:var(--accent)}
+.case-hero>.film {margin:0;border:1px solid var(--line);border-radius:var(--radius);overflow:hidden;background:#0e1117}
+.case-hero>.film video {display:block;width:100%;height:auto;aspect-ratio:16/9;background:#0e1117}
+.case-figure {margin:0;border:1px solid var(--line);border-radius:var(--radius);overflow:hidden;background:#171a1c}
+.case-figure img {display:block;width:100%;height:auto}
 .next {transition:color var(--motion-fast),border-color var(--motion-fast)}
 .next:is(:hover,:focus-visible) {color:var(--accent);border-color:var(--accent)}
 :is(a,button):active {opacity:.75}
@@ -100,6 +104,7 @@ a,button {touch-action:manipulation}
   .hero-main,.case-head {animation:enter var(--motion-enter) var(--ease) both}
   .profile-index {animation:enter var(--motion-enter) var(--ease) 60ms both}
   .case-hero>.visual {animation:image-enter var(--motion-enter) var(--ease) both}
+  .case-hero>.film {animation:image-enter var(--motion-enter) var(--ease) both}
   .mobile-menu:not([hidden]) {animation:enter 180ms var(--ease) both}
 }
 @media(max-width:1000px){
