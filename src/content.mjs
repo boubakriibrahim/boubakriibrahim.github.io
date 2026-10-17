@@ -228,6 +228,7 @@ export const projects = [
   {
     slug:"service-desk", year:"2026",
     repo:{name:"service-desk",url:"https://github.com/boubakriibrahim/service-desk"},
+    card:{src:"assets/projects/service-desk-poster.jpg",width:1920,height:1080,alt:{en:"Opening frame of the Service Desk launch film: the model suggests, the app checks, a person approves.",fr:"Image d’ouverture du film de lancement de Service Desk : le modèle propose, l’application vérifie, une personne approuve."}},
     video:{
       src:"assets/projects/service-desk-film.mp4",
       poster:"assets/projects/service-desk-film-poster.webp",

@@ -87,7 +87,7 @@ function footer(lang, depth) {
 const sectionHead=(k,t,intro="")=>`<div class="section-head"><p class="eyebrow">${e(k)}</p><h2>${e(t)}</h2>${intro?`<p class="section-intro">${e(intro)}</p>`:""}</div>`;
 
 function visual(p,lang,depth,hero=false){
-  const asset=projectMedia[p.slug];
+  const asset=p.card||projectMedia[p.slug];
   const year=p.year?e(tr(p.year,lang)):"";
   if(asset){
     const src=`${pre(depth)}${asset.src}`;
