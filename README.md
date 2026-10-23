@@ -34,10 +34,10 @@ No `npm install` is required.
 
 ## Deploy to GitHub Pages
 
-This package is configured for the existing profile site:
+This package is configured for the custom domain in `CNAME`, which is the canonical host for all URLs, the sitemap and `robots.txt`:
 
 ```text
-https://boubakriibrahim.github.io
+https://ibrahimboubakri.me
 ```
 
 1. Replace the contents of the `boubakriibrahim.github.io` repository with this project.

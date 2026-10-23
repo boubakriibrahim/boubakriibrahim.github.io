@@ -28,7 +28,7 @@ jobs:
 
       - name: Build
         env:
-          SITE_URL: https://boubakriibrahim.github.io
+          SITE_URL: https://ibrahimboubakri.me
         run: npm run build
 
       - name: Validate

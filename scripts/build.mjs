@@ -6,7 +6,7 @@ import { identity, media, projectMedia, ui, capabilities, experience, education,
 
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
 const dist = path.join(root, "dist");
-const SITE = (process.env.SITE_URL || "https://boubakriibrahim.github.io").replace(/\/$/, "");
+const SITE = (process.env.SITE_URL || "https://ibrahimboubakri.me").replace(/\/$/, "");
 
 const e = (v="") => String(v).replaceAll("&","&amp;").replaceAll("<","&lt;").replaceAll(">","&gt;").replaceAll('"',"&quot;");
 const tr = (v,l) => typeof v === "string" ? v : v[l];
@@ -16,36 +16,97 @@ const href = (l,d,p="") => `${pre(d)}${langRoot(l)}${p}` || "./";
 const otherHref = (l,d,p="") => `${pre(d)}${l === "en" ? "fr/" : ""}${p}` || "./";
 const cv = l => `resume/Ibrahim_Boubakri_CV_${l === "en" ? "EN" : "FR"}.pdf`;
 
-function head(lang, depth, title, description, currentPath="") {
+// Search snippets read best at ~150–160 characters; cut on a word boundary.
+const clip = (text, max = 158) => {
+  if (text.length <= max) return text;
+  const cut = text.slice(0, max).replace(/\s+\S*$/, "");
+  return `${cut.replace(/[,;:\s]+$/, "")}…`;
+};
+
+const PERSON_ID = `${SITE}/#person`;
+const WEBSITE_ID = `${SITE}/#website`;
+
+function jsonLd(lang, canonical, title, description, og, crumbs) {
+  const inLanguage = lang === "en" ? "en-CA" : "fr-CA";
+  const graph = [
+    {
+      "@type": "Person", "@id": PERSON_ID, name: identity.name, url: SITE, image: `${SITE}/assets/og-card.png`,
+      jobTitle: lang === "en" ? "Full-Stack Software Engineer" : "Développeur full stack",
+      email: `mailto:${identity.email}`, sameAs: [identity.github, identity.linkedin],
+      address: { "@type": "PostalAddress", addressLocality: "Québec", addressRegion: "QC", addressCountry: "CA" },
+      alumniOf: ["Université du Québec à Trois-Rivières", "École Nationale des Sciences de l'Informatique"],
+      knowsAbout: ["Full-stack development", "Backend architecture", "DevOps", "AI integration", "Computer vision", "Robotics"],
+      knowsLanguage: ["English", "French"]
+    },
+    {
+      "@type": "WebSite", "@id": WEBSITE_ID, url: SITE, name: identity.name, inLanguage: ["en-CA", "fr-CA"],
+      publisher: { "@id": PERSON_ID }
+    },
+    {
+      "@type": "WebPage", "@id": `${canonical}#webpage`, url: canonical, name: title, description, inLanguage,
+      isPartOf: { "@id": WEBSITE_ID }, about: { "@id": PERSON_ID },
+      primaryImageOfPage: { "@type": "ImageObject", url: og }
+    }
+  ];
+  if (crumbs.length > 1) {
+    graph.push({
+      "@type": "BreadcrumbList",
+      itemListElement: crumbs.map((c, i) => ({ "@type": "ListItem", position: i + 1, name: c.name, item: c.url }))
+    });
+  }
+  return JSON.stringify({ "@context": "https://schema.org", "@graph": graph }).replaceAll("<", "\\u003c");
+}
+
+function head(lang, depth, title, rawDescription, currentPath = "", { indexable = true, crumbs = [] } = {}) {
+  const description = clip(rawDescription);
   const canonical = `${SITE}/${langRoot(lang)}${currentPath}`;
-  const alt = lang === "en" ? `${SITE}/fr/${currentPath}` : `${SITE}/${currentPath}`;
+  const enUrl = `${SITE}/${currentPath}`;
+  const frUrl = `${SITE}/fr/${currentPath}`;
   const og = `${SITE}/assets/${lang === "fr" ? "og-card-fr.png" : "og-card.png"}`;
-  const schema = {
-    "@context":"https://schema.org","@type":"Person",name:identity.name,url:SITE,
-    email:`mailto:${identity.email}`,sameAs:[identity.github,identity.linkedin],
-    address:{"@type":"PostalAddress",addressLocality:"Québec",addressRegion:"QC",addressCountry:"CA"},
-    alumniOf:["Université du Québec à Trois-Rivières","École Nationale des Sciences de l'Informatique"],
-    knowsAbout:["Full-stack development","Backend architecture","DevOps","AI integration","Computer vision","Robotics"]
-  };
+  const ogAlt = lang === "en"
+    ? `${identity.name}, full-stack software engineer`
+    : `${identity.name}, développeur full stack`;
+  const robots = indexable
+    ? "index,follow,max-image-preview:large,max-snippet:-1,max-video-preview:-1"
+    : "noindex,nofollow";
+  const alternates = indexable ? `
+<link rel="canonical" href="${canonical}">
+<link rel="alternate" hreflang="en-CA" href="${enUrl}">
+<link rel="alternate" hreflang="fr-CA" href="${frUrl}">
+<link rel="alternate" hreflang="x-default" href="${enUrl}">` : "";
   return `<meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <meta name="description" content="${e(description)}">
+<meta name="robots" content="${robots}">
+<meta name="author" content="${identity.name}">
 <meta name="color-scheme" content="light dark">
 <meta name="theme-color" content="#f2efe9" media="(prefers-color-scheme: light)">
 <meta name="theme-color" content="#111210" media="(prefers-color-scheme: dark)">
-<title>${e(title)}</title>
-<link rel="canonical" href="${canonical}">
-<link rel="alternate" hreflang="${lang === "en" ? "en-CA" : "fr-CA"}" href="${canonical}">
-<link rel="alternate" hreflang="${lang === "en" ? "fr-CA" : "en-CA"}" href="${alt}">
+<title>${e(title)}</title>${alternates}
 <script>try{const t=localStorage.getItem("ib-theme");if(t==="light"||t==="dark")document.documentElement.dataset.theme=t}catch{}</script>
+<script>window.va=window.va||function(){(window.vaq=window.vaq||[]).push(arguments)};</script>
+<script defer src="https://va.vercel-scripts.com/v1/script.js"></script>
 <link rel="stylesheet" href="${pre(depth)}assets/site.css">
 <link rel="icon" href="${pre(depth)}assets/favicon.svg" type="image/svg+xml">
-<meta property="og:type" content="website"><meta property="og:locale" content="${ui[lang].locale}">
-<meta property="og:title" content="${e(title)}"><meta property="og:description" content="${e(description)}">
-<meta property="og:url" content="${canonical}"><meta property="og:image" content="${og}">
-<meta name="twitter:card" content="summary_large_image"><meta name="twitter:title" content="${e(title)}">
-<meta name="twitter:description" content="${e(description)}"><meta name="twitter:image" content="${og}">
-<script type="application/ld+json">${JSON.stringify(schema).replaceAll("<","\\u003c")}</script>`;
+<link rel="me" href="${identity.github}">
+<link rel="me" href="${identity.linkedin}">
+<meta property="og:type" content="${currentPath ? "article" : "website"}">
+<meta property="og:site_name" content="${identity.name}">
+<meta property="og:locale" content="${ui[lang].locale}">
+<meta property="og:locale:alternate" content="${ui[lang === "en" ? "fr" : "en"].locale}">
+<meta property="og:title" content="${e(title)}">
+<meta property="og:description" content="${e(description)}">
+<meta property="og:url" content="${canonical}">
+<meta property="og:image" content="${og}">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="${e(ogAlt)}">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="${e(title)}">
+<meta name="twitter:description" content="${e(description)}">
+<meta name="twitter:image" content="${og}">
+<meta name="twitter:image:alt" content="${e(ogAlt)}">
+${indexable ? `<script type="application/ld+json">${jsonLd(lang, canonical, title, description, og, crumbs)}</script>` : ""}`;
 }
 
 function header(lang, depth, projectSlug="") {
@@ -208,11 +269,15 @@ ${gallery}
 <a class="next shell" href="${href(lang,d,`work/${next.slug}/`)}"><span class="eyebrow">${e(u.next)}</span><strong>${e(tr(next.title,lang))}</strong><b aria-hidden="true">→</b></a>
 ${contact(lang,d)}
 </main>`;
-  return shell(lang,d,`work/${p.slug}/`,`${tr(p.title,lang)} — ${identity.name}`,tr(p.summary,lang),body,"case",p.slug);
+  const crumbs=[
+    {name:lang==="en"?"Home":"Accueil",url:`${SITE}/${langRoot(lang)}`},
+    {name:tr(p.title,lang),url:`${SITE}/${langRoot(lang)}work/${p.slug}/`}
+  ];
+  return shell(lang,d,`work/${p.slug}/`,`${tr(p.title,lang)} — ${identity.name}`,tr(p.summary,lang),body,"case",p.slug,{crumbs});
 }
 
-function shell(lang,depth,currentPath,title,desc,body,bodyClass="",projectSlug=""){
-  return `<!doctype html><html lang="${lang}" data-theme="auto"><head>${head(lang,depth,title,desc,currentPath)}</head><body class="${bodyClass}">${header(lang,depth,projectSlug)}${body}${footer(lang,depth)}</body></html>`;
+function shell(lang,depth,currentPath,title,desc,body,bodyClass="",projectSlug="",seo={}){
+  return `<!doctype html><html lang="${lang}" data-theme="auto"><head>${head(lang,depth,title,desc,currentPath,seo)}</head><body class="${bodyClass}">${header(lang,depth,projectSlug)}${body}${footer(lang,depth)}</body></html>`;
 }
 
 async function emit(rel,html){const f=path.join(dist,rel);await mkdir(path.dirname(f),{recursive:true});await writeFile(f,html,"utf8");}
@@ -226,11 +291,19 @@ await emit("index.html",home("en"));
 await emit("fr/index.html",home("fr"));
 for(const p of projects){await emit(`work/${p.slug}/index.html`,projectPage(p,"en"));await emit(`fr/work/${p.slug}/index.html`,projectPage(p,"fr"));}
 
-const notFound=`<!doctype html><html lang="en"><head>${head("en",0,"404 — Ibrahim Boubakri","Page not found.","404.html")}</head><body><a class="skip-link" href="#content">Skip to content</a><main id="content" class="error shell"><p class="eyebrow">404</p><h1>That page is not here.</h1><p>The portfolio is still where it should be.</p><a href="./">Back home →</a></main><script src="assets/site.js" defer></script></body></html>`;
+const notFound=`<!doctype html><html lang="en"><head>${head("en",0,"404 — Ibrahim Boubakri","Page not found.","",{indexable:false})}</head><body><a class="skip-link" href="#content">Skip to content</a><main id="content" class="error shell"><p class="eyebrow">404</p><h1>That page is not here.</h1><p>The portfolio is still where it should be.</p><a href="./">Back home →</a></main><script src="assets/site.js" defer></script></body></html>`;
 await emit("404.html",notFound);
 
-const routes=["","fr/",...projects.map(p=>`work/${p.slug}/`),...projects.map(p=>`fr/work/${p.slug}/`)];
-await emit("sitemap.xml",`<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n${routes.map(r=>`<url><loc>${SITE}/${r}</loc></url>`).join("\n")}\n</urlset>`);
-await emit("robots.txt",`User-agent: *\nAllow: /\nSitemap: ${SITE}/sitemap.xml\n`);
+// Every indexable page is listed in both languages, with hreflang alternates and its project image.
+const pagePaths=["",...projects.map(p=>`work/${p.slug}/`)];
+const sitemapEntry=(lang,p)=>{
+  const slug=p.replace(/^work\//,"").replace(/\/$/,"");
+  const project=projects.find(x=>x.slug===slug);
+  const image=project&&projectMedia[project.slug]?`<image:image><image:loc>${SITE}/${projectMedia[project.slug].src}</image:loc></image:image>`:"";
+  return `<url><loc>${SITE}/${langRoot(lang)}${p}</loc><xhtml:link rel="alternate" hreflang="en-CA" href="${SITE}/${p}"/><xhtml:link rel="alternate" hreflang="fr-CA" href="${SITE}/fr/${p}"/><xhtml:link rel="alternate" hreflang="x-default" href="${SITE}/${p}"/>${image}</url>`;
+};
+const sitemapUrls=pagePaths.flatMap(p=>[sitemapEntry("en",p),sitemapEntry("fr",p)]);
+await emit("sitemap.xml",`<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml" xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">\n${sitemapUrls.join("\n")}\n</urlset>\n`);
+await emit("robots.txt",`# The 404 page is noindex; everything else is public.\nUser-agent: *\nAllow: /\n\nSitemap: ${SITE}/sitemap.xml\n`);
 await emit(".nojekyll","");
-console.log(`Built ${routes.length+1} HTML pages.`);
+console.log(`Built ${pagePaths.length*2+1} HTML pages.`);
