@@ -34,7 +34,7 @@ No `npm install` is required.
 
 ## Deploy to GitHub Pages
 
-This package is configured for the custom domain in `CNAME`, which is the canonical host for all URLs, the sitemap and `robots.txt`:
+This package is configured for the custom domain `ibrahimboubakri.me`, which is the canonical host for all URLs, the sitemap and `robots.txt`:
 
 ```text
 https://ibrahimboubakri.me
