@@ -1,3 +1,7 @@
+import { inject } from "./vendor/vercel-analytics.mjs";
+
+inject({ mode: "production", scriptSrc: "https://va.vercel-scripts.com/v1/script.js" });
+
 (() => {
   const root = document.documentElement;
   const themeButton = document.querySelector("[data-theme-toggle]");

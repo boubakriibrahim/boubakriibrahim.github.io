@@ -84,8 +84,6 @@ function head(lang, depth, title, rawDescription, currentPath = "", { indexable 
 <meta name="theme-color" content="#111210" media="(prefers-color-scheme: dark)">
 <title>${e(title)}</title>${alternates}
 <script>try{const t=localStorage.getItem("ib-theme");if(t==="light"||t==="dark")document.documentElement.dataset.theme=t}catch{}</script>
-<script>window.va=window.va||function(){(window.vaq=window.vaq||[]).push(arguments)};</script>
-<script defer src="https://va.vercel-scripts.com/v1/script.js"></script>
 <link rel="stylesheet" href="${pre(depth)}assets/site.css">
 <link rel="icon" href="${pre(depth)}assets/favicon.svg" type="image/svg+xml">
 <link rel="me" href="${identity.github}">
@@ -142,7 +140,7 @@ function footer(lang, depth) {
   <div><strong>${identity.name}</strong><p>${lang==="en"?"Software from interface to infrastructure.":"Du produit à l’infrastructure."}</p></div>
   <div class="footer-links"><a href="mailto:${identity.email}">${identity.email}</a><a href="${identity.github}" target="_blank" rel="noreferrer">GitHub ↗</a><a href="${identity.linkedin}" target="_blank" rel="noreferrer">LinkedIn ↗</a></div>
   <div class="footer-meta"><span>Québec, Canada</span><span>© <span data-year>2026</span> Ibrahim Boubakri</span></div>
-</div></footer><script src="${pre(depth)}assets/site.js" defer></script>`;
+</div></footer><script type="module" src="${pre(depth)}assets/site.js"></script>`;
 }
 
 const sectionHead=(k,t,intro="")=>`<div class="section-head"><p class="eyebrow">${e(k)}</p><h2>${e(t)}</h2>${intro?`<p class="section-intro">${e(intro)}</p>`:""}</div>`;
@@ -286,12 +284,15 @@ await rm(dist,{recursive:true,force:true});await mkdir(dist,{recursive:true});
 await cp(path.join(root,"public"),dist,{recursive:true});
 await cp(path.join(root,"src","site.css"),path.join(dist,"assets","site.css"));
 await cp(path.join(root,"src","site.js"),path.join(dist,"assets","site.js"));
+// Vercel Web Analytics ships as a self-contained ES module; serve it from our own origin.
+await mkdir(path.join(dist,"assets","vendor"),{recursive:true});
+await cp(path.join(root,"node_modules","@vercel","analytics","dist","index.mjs"),path.join(dist,"assets","vendor","vercel-analytics.mjs"));
 
 await emit("index.html",home("en"));
 await emit("fr/index.html",home("fr"));
 for(const p of projects){await emit(`work/${p.slug}/index.html`,projectPage(p,"en"));await emit(`fr/work/${p.slug}/index.html`,projectPage(p,"fr"));}
 
-const notFound=`<!doctype html><html lang="en"><head>${head("en",0,"404 — Ibrahim Boubakri","Page not found.","",{indexable:false})}</head><body><a class="skip-link" href="#content">Skip to content</a><main id="content" class="error shell"><p class="eyebrow">404</p><h1>That page is not here.</h1><p>The portfolio is still where it should be.</p><a href="./">Back home →</a></main><script src="assets/site.js" defer></script></body></html>`;
+const notFound=`<!doctype html><html lang="en"><head>${head("en",0,"404 — Ibrahim Boubakri","Page not found.","",{indexable:false})}</head><body><a class="skip-link" href="#content">Skip to content</a><main id="content" class="error shell"><p class="eyebrow">404</p><h1>That page is not here.</h1><p>The portfolio is still where it should be.</p><a href="./">Back home →</a></main><script type="module" src="assets/site.js"></script></body></html>`;
 await emit("404.html",notFound);
 
 // Every indexable page is listed in both languages, with hreflang alternates and its project image.
