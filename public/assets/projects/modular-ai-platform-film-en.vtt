@@ -1,0 +1,60 @@
+WEBVTT
+
+00:00:00.470 --> 00:00:05.030 line:80%
+A computer-vision model
+on its own is not a product: annotation,
+
+00:00:05.040 --> 00:00:08.240 line:80%
+training and live execution have to agree.
+
+00:00:09.240 --> 00:00:12.870 line:80%
+One control plane keeps
+projects, data sets,
+
+00:00:12.880 --> 00:00:15.970 line:80%
+jobs and models
+in a single application state,
+
+00:00:16.120 --> 00:00:18.790 line:80%
+and the services work
+through its contracts.
+
+00:00:20.500 --> 00:00:24.570 line:80%
+Training workers claim jobs
+from the queue and send heartbeats;
+
+00:00:24.580 --> 00:00:27.680 line:80%
+progress and results return
+to the control plane.
+
+00:00:29.865 --> 00:00:31.725 line:80%
+Models ship as plugins,
+
+00:00:31.735 --> 00:00:35.825 line:80%
+and annotation and training load them
+through shared interfaces,
+
+00:00:35.835 --> 00:00:37.605 line:80%
+so the services stay separate.
+
+00:00:39.230 --> 00:00:44.960 line:80%
+Live cameras feed a media relay, and each
+visual workflow runs in its own worker,
+
+00:00:44.970 --> 00:00:47.280 line:80%
+with retries for failing nodes.
+
+00:00:48.605 --> 00:00:53.915 line:80%
+The product appears here through its
+documented architecture: no client data,
+
+00:00:53.925 --> 00:00:57.485 line:80%
+no internal hostnames
+and no private interface.
+
+00:00:58.625 --> 00:01:03.845 line:80%
+The result is a connected model life cycle
+with clear boundaries between data,
+
+00:01:03.855 --> 00:01:05.515 line:80%
+models and execution.

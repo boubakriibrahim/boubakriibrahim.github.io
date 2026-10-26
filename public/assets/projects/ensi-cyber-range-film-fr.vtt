@@ -1,0 +1,49 @@
+WEBVTT
+
+00:00:00.430 --> 00:00:02.863 line:80%
+Une expérience réseau
+a besoin d’une cible,
+
+00:00:02.873 --> 00:00:05.430 line:80%
+d’une explication et
+d’un moyen de l’arrêter.
+
+00:00:08.585 --> 00:00:13.542 line:80%
+Cette application de bureau réunit les
+trois dans une seule fenêtre : découverte,
+
+00:00:13.552 --> 00:00:18.335 line:80%
+sélection de la cible, notes de scénario
+et commandes de démarrage et d’arrêt.
+
+00:00:19.180 --> 00:00:22.531 line:80%
+Des workers d’arrière-plan
+s’exécutent dans un pool de threads ;
+
+00:00:22.541 --> 00:00:26.060 line:80%
+des signaux renvoient leurs résultats
+à la fenêtre sans la bloquer.
+
+00:00:28.565 --> 00:00:32.270 line:80%
+La découverte et les scénarios
+vivent dans des modules Python
+
+00:00:32.280 --> 00:00:35.995 line:80%
+distincts ; la fenêtre ne fait
+que coordonner les sélections.
+
+00:00:36.700 --> 00:00:39.909 line:80%
+Le laboratoire reste sur le
+poste de travail : aucune cible
+
+00:00:39.919 --> 00:00:43.520 line:80%
+réelle n’est utilisée et rien n’est
+exécuté pour l’enregistrement.
+
+00:00:44.200 --> 00:00:47.817 line:80%
+Une seule fenêtre pour toute
+l’expérience : la découverte,
+
+00:00:47.827 --> 00:00:52.080 line:80%
+la description du scénario et les
+commandes de démarrage et d’arrêt.

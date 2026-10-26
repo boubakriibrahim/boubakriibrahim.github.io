@@ -1,0 +1,69 @@
+WEBVTT
+
+00:00:00.380 --> 00:00:04.740 line:80%
+Une compétition de 24 heures n’est
+pas une seule tâche : préparation,
+
+00:00:04.750 --> 00:00:08.740 line:80%
+déploiement et opérations en
+direct se déroulent en même temps.
+
+00:00:09.824 --> 00:00:11.893 line:80%
+L’événement a duré une journée entière,
+
+00:00:11.903 --> 00:00:14.674 line:80%
+et les trois se chevauchaient
+dès la première heure.
+
+00:00:18.158 --> 00:00:21.486 line:80%
+Le dépôt public contient
+des défis web distincts
+
+00:00:21.496 --> 00:00:24.476 line:80%
+et un exercice de
+rétro-ingénierie Android.
+
+00:00:24.486 --> 00:00:28.728 line:80%
+Chaque environnement conserve
+ses sources et ses dépendances.
+
+00:00:29.309 --> 00:00:32.249 line:80%
+Les Dockerfiles empaquettent
+les applications web.
+
+00:00:32.259 --> 00:00:36.201 line:80%
+Compose décrit la construction et
+l’exposition d’un service de défi
+
+00:00:36.211 --> 00:00:38.689 line:80%
+pour rendre son déploiement reproductible.
+
+00:00:39.269 --> 00:00:41.451 line:80%
+Une fois lancé, le travail s’est déplacé
+
+00:00:41.461 --> 00:00:44.859 line:80%
+vers la supervision, le diagnostic
+et l’aide aux participants.
+
+00:00:47.632 --> 00:00:52.461 line:80%
+Les coulisses de l’événement restent hors
+de ce film : aucune donnée de participant,
+
+00:00:52.471 --> 00:00:54.534 line:80%
+aucune infrastructure en production,
+
+00:00:54.544 --> 00:00:57.482 line:80%
+et des rôles tels que
+l’étude de cas les documente.
+
+00:00:58.148 --> 00:01:01.877 line:80%
+L’infrastructure et le développement
+des défis se rejoignaient dans une même
+
+00:01:01.887 --> 00:01:04.386 line:80%
+boucle : environnements
+préparés, services déployés
+
+00:01:04.396 --> 00:01:06.758 line:80%
+et participants accompagnés
+pendant l’événement.

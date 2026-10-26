@@ -1,0 +1,57 @@
+WEBVTT
+
+00:00:00.230 --> 00:00:03.960 line:80%
+Live technical data passes
+through a message broker.
+
+00:00:03.970 --> 00:00:08.350 line:80%
+A separate Node service forwards it
+to React through Socket.IO.
+
+00:00:08.563 --> 00:00:12.693 line:80%
+The original interface runs locally
+against a local broker;
+
+00:00:12.703 --> 00:00:15.353 line:80%
+synthetic messages then
+update the pressure
+
+00:00:15.363 --> 00:00:18.163 line:80%
+charts through the real messaging path.
+
+00:00:19.704 --> 00:00:23.684 line:80%
+Station records and source
+configuration follow another path,
+
+00:00:23.694 --> 00:00:26.194 line:80%
+through Express and MongoDB.
+
+00:00:26.897 --> 00:00:31.727 line:80%
+A separate Python processor turns
+spreadsheets into JSON reports.
+
+00:00:31.737 --> 00:00:36.117 line:80%
+Importing those results into application
+records is a separate step.
+
+00:00:36.917 --> 00:00:42.247 line:80%
+Container definitions and deployment
+files document the intended topology.
+
+00:00:42.257 --> 00:00:45.697 line:80%
+A working deployment still
+needs separate verification.
+
+00:00:46.381 --> 00:00:49.891 line:80%
+Three paths, three boundaries:
+live messages,
+
+00:00:49.901 --> 00:00:53.011 line:80%
+application records and file processing.
+
+00:00:53.021 --> 00:00:55.201 line:80%
+The inspected version forwards live
+
+00:00:55.381 --> 00:00:58.821 line:80%
+messages without saving every update
+to the database.

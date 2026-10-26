@@ -1,0 +1,90 @@
+WEBVTT
+
+00:00:00.400 --> 00:00:02.787 line:80%
+Un robot industriel
+doit repérer une palette
+
+00:00:02.797 --> 00:00:05.130 line:80%
+et s’aligner sur ses
+ouvertures de fourche.
+
+00:00:05.140 --> 00:00:08.900 line:80%
+C’est un problème de perception
+avant d’être un problème de commande.
+
+00:00:09.844 --> 00:00:14.589 line:80%
+Python pilote Blender pour faire varier
+la scène, l’éclairage et la caméra.
+
+00:00:14.599 --> 00:00:17.125 line:80%
+Chaque image synthétique est accompagnée
+
+00:00:17.135 --> 00:00:19.924 line:80%
+de ses boîtes et
+annotations de points clés.
+
+00:00:20.935 --> 00:00:24.404 line:80%
+Des détecteurs ont été entraînés
+et évalués sur des images réelles :
+
+00:00:24.414 --> 00:00:27.218 line:80%
+le préentraînement synthétique
+a maintenu la qualité de
+
+00:00:27.228 --> 00:00:30.441 line:80%
+détection et de pose à partir
+d’un petit jeu réel annoté, alors
+
+00:00:30.451 --> 00:00:33.776 line:80%
+que l’entraînement sur données
+réelles seules restait en retrait.
+
+00:00:34.804 --> 00:00:36.837 line:80%
+Les points clés donnent à l’approche
+
+00:00:36.847 --> 00:00:39.504 line:80%
+une géométrie qu’une
+boîte ne peut pas fournir.
+
+00:00:39.514 --> 00:00:44.054 line:80%
+Le préentraînement synthétique a réduit
+le désalignement latéral au point cible.
+
+00:00:44.824 --> 00:00:48.828 line:80%
+Un service FastAPI et
+WebSocket relie le détecteur
+
+00:00:48.838 --> 00:00:52.440 line:80%
+à la simulation et à la
+navigation existante.
+
+00:00:52.450 --> 00:00:56.544 line:80%
+La même chaîne modèle mène
+au déploiement embarqué.
+
+00:00:57.047 --> 00:01:01.470 line:80%
+Les essais en boucle fermée exécutent
+l’approche dans le simulateur PyBullet
+
+00:01:01.480 --> 00:01:06.087 line:80%
+du partenaire : l’image caméra entre,
+la perception revient vers le contrôleur.
+
+00:01:07.057 --> 00:01:10.941 line:80%
+Le simulateur et le tableau de bord
+ont été réalisés par le partenaire.
+
+00:01:10.951 --> 00:01:13.244 line:80%
+Le détecteur, son service de perception et
+
+00:01:13.254 --> 00:01:15.667 line:80%
+leur intégration sont
+ce que ce film montre.
+
+00:01:16.511 --> 00:01:20.549 line:80%
+Des scènes synthétiques, un détecteur
+entraîné et un Jetson embarqué :
+
+00:01:20.559 --> 00:01:23.971 line:80%
+une seule chaîne de perception,
+des données jusqu’au robot.

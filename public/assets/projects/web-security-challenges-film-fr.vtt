@@ -1,0 +1,60 @@
+WEBVTT
+
+00:00:00.440 --> 00:00:05.920 line:80%
+Lire une injection SQL n’est pas la même
+chose que voir le contrôle qui échoue.
+
+00:00:08.585 --> 00:00:11.887 line:80%
+Ces exercices placent le
+comportement de l’application
+
+00:00:11.897 --> 00:00:15.075 line:80%
+devant les étudiants,
+avec des répertoires distincts
+
+00:00:15.085 --> 00:00:18.387 line:80%
+pour l’injection SQL,
+les comparaisons faibles en PHP,
+
+00:00:18.397 --> 00:00:22.015 line:80%
+les expressions régulières et
+l’authentification par jeton.
+
+00:00:22.950 --> 00:00:26.600 line:80%
+Les étudiants peuvent consulter
+le PHP et le JavaScript,
+
+00:00:26.610 --> 00:00:30.194 line:80%
+ainsi que les ressources des
+pages et les fichiers SQL.
+
+00:00:30.204 --> 00:00:33.210 line:80%
+Un petit formulaire rend
+son entrée explicite.
+
+00:00:34.200 --> 00:00:37.548 line:80%
+L’important est la comparaison :
+le code prend l’entrée
+
+00:00:37.558 --> 00:00:41.100 line:80%
+comme fiable, puis la vérifie
+avec une comparaison faible.
+
+00:00:42.315 --> 00:00:48.175 line:80%
+L’implémentation publiée fournit au
+laboratoire un code concret à étudier.
+
+00:00:50.430 --> 00:00:54.061 line:80%
+Les exercices sont présentés
+sous forme de code et de pages ;
+
+00:00:54.071 --> 00:00:58.190 line:80%
+aucune attaque réelle n’est menée
+contre une cible en fonctionnement.
+
+00:00:58.565 --> 00:01:01.134 line:80%
+Le code reste visible : c’est ce qui donne
+
+00:01:01.144 --> 00:01:04.215 line:80%
+à la salle de cours un
+support concret à discuter.

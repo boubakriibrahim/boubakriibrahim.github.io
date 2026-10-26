@@ -1,0 +1,71 @@
+WEBVTT
+
+00:00:00.470 --> 00:00:04.515 line:80%
+Un modèle de vision par ordinateur
+n’est pas un produit à lui seul :
+
+00:00:04.525 --> 00:00:08.520 line:80%
+annotation, entraînement et exécution
+en direct doivent s’accorder.
+
+00:00:09.240 --> 00:00:13.162 line:80%
+Le plan de contrôle conserve les
+projets, les jeux de données,
+
+00:00:13.172 --> 00:00:16.777 line:80%
+les tâches et les modèles dans
+un état applicatif commun.
+
+00:00:16.787 --> 00:00:19.070 line:80%
+Les services utilisent ses contrats.
+
+00:00:20.500 --> 00:00:22.723 line:80%
+Les workers d’entraînement
+réservent les tâches
+
+00:00:22.733 --> 00:00:24.956 line:80%
+de la file et envoient
+des signaux de présence.
+
+00:00:24.966 --> 00:00:27.960 line:80%
+La progression et les résultats
+reviennent au plan de contrôle.
+
+00:00:29.865 --> 00:00:32.205 line:80%
+Les modèles sont livrés
+sous forme de plugins.
+
+00:00:32.215 --> 00:00:34.401 line:80%
+L’annotation et
+l’entraînement les chargent
+
+00:00:34.411 --> 00:00:37.885 line:80%
+via des interfaces communes,
+tout en restant des services distincts.
+
+00:00:39.230 --> 00:00:41.997 line:80%
+Les caméras en direct
+alimentent un relais média.
+
+00:00:42.007 --> 00:00:45.170 line:80%
+Chaque workflow visuel s’exécute
+dans son propre worker,
+
+00:00:45.180 --> 00:00:47.560 line:80%
+avec des reprises pour les nœuds en échec.
+
+00:00:48.605 --> 00:00:53.209 line:80%
+La plateforme est présentée par son
+architecture documentée : aucune
+
+00:00:53.219 --> 00:00:57.765 line:80%
+donnée client, aucun nom d’hôte
+interne et aucune interface privée.
+
+00:00:58.625 --> 00:01:01.289 line:80%
+Le cycle de vie des
+modèles est ainsi relié,
+
+00:01:01.299 --> 00:01:05.795 line:80%
+avec des frontières claires entre les
+données, les modèles et l’exécution.

@@ -1,0 +1,71 @@
+WEBVTT
+
+00:00:00.400 --> 00:00:05.070 line:80%
+A robot has to find a pallet
+and line up with its fork openings.
+
+00:00:05.080 --> 00:00:08.620 line:80%
+That is a perception problem
+before it is a control problem.
+
+00:00:09.844 --> 00:00:14.374 line:80%
+Python drives Blender
+to vary the scene, lighting and camera.
+
+00:00:14.384 --> 00:00:19.644 line:80%
+Each synthetic image comes with its
+bounding boxes and keypoint annotations.
+
+00:00:20.935 --> 00:00:25.085 line:80%
+Detectors were trained
+and evaluated on real images:
+
+00:00:25.095 --> 00:00:31.246 line:80%
+synthetic pre-training held detection and
+pose quality from a small annotated set,
+
+00:00:31.256 --> 00:00:33.496 line:80%
+where real-only training lagged.
+
+00:00:34.804 --> 00:00:38.864 line:80%
+Keypoints give the approach
+a geometry a box cannot.
+
+00:00:38.874 --> 00:00:43.774 line:80%
+Synthetic pre-training reduced lateral
+misalignment at the target point.
+
+00:00:44.824 --> 00:00:50.114 line:80%
+A FastAPI and WebSocket service
+connects the detector to simulation
+
+00:00:50.374 --> 00:00:53.134 line:80%
+and the existing navigation stack.
+
+00:00:53.144 --> 00:00:56.264 line:80%
+The same model path leads
+to edge deployment.
+
+00:00:57.047 --> 00:01:01.797 line:80%
+Closed-loop tests run the approach
+in the partner’s PyBullet simulator:
+
+00:01:01.807 --> 00:01:05.807 line:80%
+camera input in, perception output back
+to the controller.
+
+00:01:07.057 --> 00:01:10.427 line:80%
+The simulator and dashboard were built
+by the partner.
+
+00:01:10.437 --> 00:01:15.387 line:80%
+The detector, its service and their
+integration are what this film shows.
+
+00:01:16.511 --> 00:01:20.851 line:80%
+Synthetic scenes, a trained detector
+and an onboard Jetson:
+
+00:01:20.861 --> 00:01:23.691 line:80%
+one perception path
+from data to the robot.

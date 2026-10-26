@@ -1,0 +1,45 @@
+WEBVTT
+
+00:00:00.430 --> 00:00:05.150 line:80%
+A network experiment needs a target,
+an explanation and a way to stop it.
+
+00:00:08.585 --> 00:00:11.045 line:80%
+This desktop application keeps all three
+
+00:00:11.055 --> 00:00:14.695 line:80%
+in one window: discovery,
+target selection,
+
+00:00:14.705 --> 00:00:18.055 line:80%
+scenario notes and start or stop controls.
+
+00:00:19.180 --> 00:00:22.130 line:80%
+Background workers run in a thread pool;
+
+00:00:22.140 --> 00:00:25.780 line:80%
+signals return their results
+to the window without blocking it.
+
+00:00:28.565 --> 00:00:32.645 line:80%
+Discovery and the scenarios sit
+in separate Python modules,
+
+00:00:32.655 --> 00:00:35.715 line:80%
+so the window only
+coordinates the selections.
+
+00:00:36.700 --> 00:00:40.760 line:80%
+The lab stays on the desktop:
+no live target is used,
+
+00:00:40.770 --> 00:00:43.240 line:80%
+and nothing is executed for the recording.
+
+00:00:44.200 --> 00:00:47.730 line:80%
+One window for the whole
+experiment: discovery,
+
+00:00:47.740 --> 00:00:51.800 line:80%
+the scenario description
+and the controls that start and stop it.

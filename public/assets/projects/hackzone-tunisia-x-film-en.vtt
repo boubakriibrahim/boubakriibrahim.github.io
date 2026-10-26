@@ -1,0 +1,56 @@
+WEBVTT
+
+00:00:00.380 --> 00:00:05.070 line:80%
+A 24-hour competition is
+not one job: preparation,
+
+00:00:05.080 --> 00:00:08.460 line:80%
+deployment and live
+operations all run at once.
+
+00:00:09.824 --> 00:00:14.394 line:80%
+The event ran for a full day, and
+the three overlapped from the first hour.
+
+00:00:18.158 --> 00:00:21.268 line:80%
+The public archive keeps
+the challenges separate:
+
+00:00:21.278 --> 00:00:25.628 line:80%
+web services and an Android
+reverse-engineering exercise,
+
+00:00:25.638 --> 00:00:28.448 line:80%
+each with its own source and dependencies.
+
+00:00:29.309 --> 00:00:32.409 line:80%
+Dockerfiles package the web applications,
+
+00:00:32.419 --> 00:00:35.839 line:80%
+and Compose describes how
+a service is built and exposed,
+
+00:00:35.849 --> 00:00:38.409 line:80%
+so a deployment can be repeated.
+
+00:00:39.269 --> 00:00:42.339 line:80%
+Once it started, the work moved
+to monitoring,
+
+00:00:42.349 --> 00:00:44.579 line:80%
+troubleshooting and participant support.
+
+00:00:47.632 --> 00:00:51.942 line:80%
+The event’s internals stay out
+of this film: no participant data,
+
+00:00:51.952 --> 00:00:57.202 line:80%
+no live infrastructure, and roles only
+as the case study documents them.
+
+00:00:58.148 --> 00:01:03.228 line:80%
+Infrastructure and challenge development
+met in one loop: environments prepared,
+
+00:01:03.238 --> 00:01:06.478 line:80%
+services deployed, participants supported.

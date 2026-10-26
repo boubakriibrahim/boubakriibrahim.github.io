@@ -1,0 +1,56 @@
+WEBVTT
+
+00:00:00.440 --> 00:00:05.640 line:80%
+Reading about SQL injection is not
+the same as seeing the check that fails.
+
+00:00:08.585 --> 00:00:12.745 line:80%
+These exercises put application behavior
+in front of students,
+
+00:00:12.755 --> 00:00:17.975 line:80%
+with separate directories
+for SQL injection, loose PHP comparisons,
+
+00:00:18.135 --> 00:00:21.735 line:80%
+regular expressions
+and token authentication.
+
+00:00:22.950 --> 00:00:26.450 line:80%
+Students can inspect the PHP
+and JavaScript
+
+00:00:26.560 --> 00:00:29.570 line:80%
+beside the page assets and the SQL files,
+
+00:00:29.580 --> 00:00:32.930 line:80%
+and a small form makes its input explicit.
+
+00:00:34.200 --> 00:00:38.810 line:80%
+What matters is the comparison:
+the code takes the input as trusted,
+
+00:00:38.820 --> 00:00:40.820 line:80%
+then checks it with a loose match.
+
+00:00:42.315 --> 00:00:43.925 line:80%
+The published implementation
+
+00:00:44.145 --> 00:00:47.895 line:80%
+gives a classroom lab concrete
+source material to examine.
+
+00:00:50.430 --> 00:00:54.300 line:80%
+The exercises appear here
+as source and page material;
+
+00:00:54.310 --> 00:00:57.910 line:80%
+no live attack is performed
+against a running target.
+
+00:00:58.565 --> 00:01:00.535 line:80%
+The source stays visible:
+
+00:01:00.545 --> 00:01:03.935 line:80%
+that is what gives the classroom
+something concrete to discuss.

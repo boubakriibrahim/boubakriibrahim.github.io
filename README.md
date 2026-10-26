@@ -1,6 +1,6 @@
 # Ibrahim Boubakri — Engineering Portfolio
 
-A bilingual English/French engineering portfolio built as a small dependency-free static-site generator. It is designed for GitHub Pages, with automated build, validation and deployment on every push to `main`.
+A bilingual English/French engineering portfolio built as a small static-site generator. Vercel builds and deploys it from `main`; the repository's own scripts build and validate it.
 
 ## Highlights
 
@@ -9,20 +9,22 @@ A bilingual English/French engineering portfolio built as a small dependency-fre
 - Six bilingual technical case studies, including security teaching and ENSI Cyber Range
 - Real résumé-based experience, education, skills and certifications
 - Public PalletDataGenerator / PyPI links and three security repositories
-- Service Desk case study with its launch film and a linked public repository
+- Project films with English narration and English/French captions, plus the original Service Desk launch film
 - Optimized local project previews with image credits and full-size views
+- Simplified Archify system diagrams and short diagram loops, each with a dark-theme version
 - English + French CV PDFs and TeX sources
 - Responsive light/dark design
 - Keyboard focus, semantic HTML, restrained entrance/hover motion and reduced-motion support
 - SEO metadata, JSON-LD, sitemap, robots.txt and social cards
-- Zero third-party runtime/build dependencies
-- Automated GitHub Pages deployment
+- One dependency: Vercel Web Analytics, served from the site's own origin
+- Deployed on Vercel from `main`
 
 ## Run locally
 
 Node.js 22+:
 
 ```bash
+npm ci
 npm run build
 npm run check
 npm run preview
@@ -30,29 +32,17 @@ npm run preview
 
 Open `http://localhost:4173`.
 
-No `npm install` is required.
+## Deploy
 
-## Deploy to GitHub Pages
-
-This package is configured for the custom domain `ibrahimboubakri.me`, which is the canonical host for all URLs, the sitemap and `robots.txt`:
-
-```text
-https://ibrahimboubakri.me
-```
-
-1. Replace the contents of the `boubakriibrahim.github.io` repository with this project.
-2. Push to `main`.
-3. In GitHub: **Settings → Pages → Source → GitHub Actions**.
-4. The included workflow builds, validates and deploys automatically.
-
-If you use another domain, update `SITE_URL` in `.github/workflows/deploy.yml`.
+Vercel builds every push to `main` and serves `https://ibrahimboubakri.me`, the canonical host for all URLs, the sitemap and `robots.txt`. See [DEPLOY.md](DEPLOY.md) for the project settings.
 
 ## Structure
 
 ```text
 .
-├── .github/workflows/deploy.yml
-├── docs/SKILL.md
+├── docs/
+│   ├── PROJECT_SOURCES.md
+│   └── SKILL.md
 ├── public/
 │   ├── assets/
 │   └── resume/
@@ -80,7 +70,18 @@ Project repository links live on each project's `repo` field. Local image metada
 bilingual alt text and source credits live in `projectMedia`. Preview images are
 stored in `public/assets/projects/`, with an 800px variant for smaller displays.
 A project can carry a `video` field (source, poster, captions); when it does, the
-film becomes the case-study hero and its still image moves into a labelled section.
+film becomes the case-study hero, or a numbered section after the context when
+the project also has a diagram loop. Optional `tracks` provide English and French
+WebVTT captions, with the page language selected by default. Films load only when
+played. A `diagram` field (English and French PNG paths
+plus alt text) adds a system diagram after the flow section; the build reads each
+PNG's dimensions. A `motion` field (English and French MP4 loop plus poster)
+gives a project with no other image a short diagram loop on its work card and
+case-study hero. Each diagram and loop file has a dark-theme twin with a `-dark`
+suffix, and the page shows the one that matches the active theme. Loops play
+continuously while visible, pause off-screen or in a hidden tab, and have a
+visible play/pause button. Reduced motion keeps the static poster. Only the
+active theme's video is loaded; without JavaScript the posters remain visible.
 See [project sources](docs/PROJECT_SOURCES.md) for the original assets and evidence.
 
 After editing:

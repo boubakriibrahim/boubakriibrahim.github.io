@@ -1,0 +1,63 @@
+WEBVTT
+
+00:00:00.230 --> 00:00:04.713 line:80%
+Les données techniques en direct
+passent par un courtier de messages.
+
+00:00:04.723 --> 00:00:08.553 line:80%
+Un service Node distinct les
+transmet à React via Socket.IO.
+
+00:00:08.563 --> 00:00:10.833 line:80%
+L’interface d’origine s’exécute localement
+
+00:00:10.843 --> 00:00:14.090 line:80%
+contre un courtier local ;
+des messages synthétiques mettent
+
+00:00:14.100 --> 00:00:18.443 line:80%
+ensuite à jour les graphiques de pression
+via le véritable chemin de messagerie.
+
+00:00:19.704 --> 00:00:23.049 line:80%
+Les fiches des stations et
+la configuration des sources
+
+00:00:23.059 --> 00:00:26.474 line:80%
+suivent un autre chemin,
+via une API Express et MongoDB.
+
+00:00:26.897 --> 00:00:31.551 line:80%
+Un traitement Python distinct transforme
+les feuilles de calcul en rapports JSON.
+
+00:00:31.561 --> 00:00:36.397 line:80%
+L’import de ces résultats dans les données
+applicatives constitue une étape séparée.
+
+00:00:36.917 --> 00:00:39.554 line:80%
+Les définitions de
+conteneurs et les fichiers
+
+00:00:39.564 --> 00:00:42.319 line:80%
+de déploiement documentent
+la topologie prévue.
+
+00:00:42.329 --> 00:00:45.977 line:80%
+Un déploiement fonctionnel demande
+une vérification distincte.
+
+00:00:46.381 --> 00:00:49.097 line:80%
+Trois chemins, trois frontières : messages
+
+00:00:49.107 --> 00:00:52.861 line:80%
+en direct, données applicatives
+et traitement de fichiers.
+
+00:00:52.871 --> 00:00:56.235 line:80%
+La version inspectée transmet
+les messages en direct
+
+00:00:56.245 --> 00:00:59.101 line:80%
+sans enregistrer chaque
+mise à jour en base.
